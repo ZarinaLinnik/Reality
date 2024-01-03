@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reality</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'main/img/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/base.css' %}">
+    {% block 'links' %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div><a href="{% url 'creature' %}" class="you">YOU</a></div>
+        <!-- <div><a href="{% url 'sense' %}" class="sense">Sense</a></div> ??? -->
+    </header>
+    <div class="liner"></div>
+    {% block 'content' %}
+    {% endblock %}
+    <script type="application/javascript" src="{% static 'main/js/base.js' %}"></script>
+</body>
+</html>

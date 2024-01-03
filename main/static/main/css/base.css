@@ -1,0 +1,54 @@
+:root {
+    --blue: rgb(28, 110, 204);
+    --gray-metal: #dddddd;
+}
+body {
+    margin: 0;
+    background-color:  var(--gray-metal);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    height: auto;
+    width: 100%;
+    background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
+}
+header > div {
+    margin: 20px 40px;
+    font-size: 26px;
+    background-color:aliceblue;
+    line-height: 75px;
+    width: 78px;
+    text-align: center;
+    border-radius: 35%;
+}
+header > div a {
+    color: rgb(59, 59, 183);
+    text-decoration: none;
+}
+.liner{
+    height: 115px;
+    background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
+}
+h1 {
+    color: rgb(30, 117, 211);
+    text-indent: 20px;
+}
+p {text-indent: 20px;}
+.you {
+    border: solid 2.5px; 
+    border-radius: 35%; 
+    padding: 10px 5px;
+}
+
+@media only screen and (max-width:400px) {
+    .liner{height: 230px;}
+    header {
+        flex-direction: column
+    }
+}
