@@ -20,10 +20,10 @@ header {
 }
 header > div {
     margin: 20px 40px;
-    font-size: 26px;
+    font-size: 54px;
     background-color:aliceblue;
-    line-height: 75px;
-    width: 78px;
+    line-height: 120px;
+    width: 138px;
     text-align: center;
     border-radius: 35%;
 }
@@ -32,22 +32,26 @@ header > div a {
     text-decoration: none;
 }
 .liner{
-    height: 115px;
+    height: 160px;
     background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
 }
 h1 {
     color: rgb(30, 117, 211);
     text-indent: 20px;
+    font-size: 59px;
 }
-p {text-indent: 20px;}
+p {
+    text-indent: 20px;
+    font-size: 44px;
+}
 .you {
-    border: solid 2.5px; 
+    border: solid 4px; 
     border-radius: 35%; 
     padding: 10px 5px;
 }
 
 @media only screen and (max-width:400px) {
-    .liner{height: 230px;}
+    /* .liner{height: 230px;}  if you add a additional div in the header*/ 
     header {
         flex-direction: column
     }
