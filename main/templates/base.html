@@ -12,7 +12,10 @@
 </head>
 <body>
     <header class="header">
-        <div><a href="{% url 'creature' %}" class="you">YOU</a></div>
+        {% if user.is_authenticated %}
+            <div><a href="{% url 'creature' %}" class="you">YOU</a></div>
+            <div><a href="{% url 'logout' %}">Log out</a></div>
+        {% endif %}
     </header>
     <div class="liner"></div>
     {% block 'content' %}

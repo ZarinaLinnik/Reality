@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start page</title>
+    <style>
+        body {
+            display: flex;
+            margin: 20px;
+            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        h1 {
+            font-size: 100px;
+        }
+        p {
+            font-size: 80px;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    {% if not user.is_authenticated %}
+        <div style="flex-direction: row;">
+            <h1><a href="{% url 'login' %}">Authorization</a></h1>
+            <p>If you were here.</p>
+        </div>
+        <div><p>OR</p></div>
+        <div>
+            <h1><a href="{% url 'registration' %}">Registration</a></h1>
+            <p>If it is your first time.</p>
+        </div>
+    {% else %} 
+        <div>
+            <p><a href="{% url 'creature' %}">Your page is waiting for you :&#2665;</a></p>
+            <p><a href="{% url 'creature' %}">Click on me.</a></p>
+        </div>
+        
+    {% endif %}
+</body>
+</html>

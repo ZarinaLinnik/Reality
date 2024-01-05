@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block 'content' %}
+    <h1>Who are you?<br>What do you want from this life and from you?</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    </form>
+{% endblock %}
