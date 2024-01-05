@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
+{% block 'style' %}
+<style>
+    img {
+        border-radius: 35%;
+    }
+</style>
+{% endblock %}
+
+{% block 'content' %}
+    <img src="{{ media }}{{ image }}">
+{% endblock %}
