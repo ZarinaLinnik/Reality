@@ -11,22 +11,27 @@
 
     <div class="grid-container">
         <div class="parameter1"><p><a href="{% url 'who_are_you' %}">Who are you?<br>What do you want from this life and from you?</a></p></div>
-        <div class="parameter2"><p><a href="#">What do you do every week? (work, study, housework)</a></p></div>
-        <div class="parameter3"><p><a href="#">What does your room or environment look like?</a></p></div>
-        <div class="parameter4"><p><a href="#">What are your habits?</a></p></div>
-        <div class="parameter_img"><a href="#"><img src="{% static 'main/img/this_is_me.jpg' %}" alt="this_human" title="This is you :&rang;" width="400px" height="700px"/></a></div>
-        <div class="parameter5"><p><a href="#">How do you spend your free time?</a></p></div>
-        <div class="parameter6">
+        <div class="parameter2" style="opacity: 0;"><p><a href="">What do you do every week? (work, study, housework)</a></p></div>
+        <div class="parameter3" style="opacity: 0;"><p><a href="">What does your room or environment look like?</a></p></div>
+        <div class="parameter4" style="opacity: 0;"><p><a href="">What are your habits?</a></p></div>
+        <div class="parameter_img">
+            <a href="{% url 'my_photo' %}">
+                <img src="{% static 'main/img/this_is_me.jpg' %}" alt="this_human" title="This is you :&rang;" width="400px" height="700px" style="border-radius: 40%;"/>
+            </a>
+        </div>
+        <div class="parameter5" style="opacity: 0;"><p><a href="">How do you spend your free time?</a></p></div>
+        <!-- In developing... (where style="opacity: 0;") and no # -->
+        <div class="parameter6" style="opacity: 0;">
             <h1>Appearance</h1>
-            <p><a href="#">What do you look like?</a></p>
+            <p><a href="">What do you look like?</a></p>
         </div>
-        <div class="parameter7">
+        <div class="parameter7" style="opacity: 0;">
             <h1>Behavior</h1>
-            <p><a href="#">What is your behavior like?</a></p>
+            <p><a href="">What is your behavior like?</a></p>
         </div>
-        <div class="parameter8">
+        <div class="parameter8" style="opacity: 0;">
             <h1>Mind</h1>
-            <p><a href="#">How do you think?</a></p>
+            <p><a href="">How do you think?</a></p>
         </div>
     </div>
     

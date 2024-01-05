@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-# from .models import SignIn, Users
+from .models import Parameter1WhoAreYou
 
-# admin.site.register(SignIn)
-# admin.site.register(Users)
+admin.site.register(Parameter1WhoAreYou)

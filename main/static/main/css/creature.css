@@ -6,7 +6,7 @@ a {
 .heart {
     color: blue;
 }
-div > img {
+img {
     border-radius: 40%;
 }
 .grid-container {

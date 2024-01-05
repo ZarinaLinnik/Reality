@@ -1,33 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block 'links' %}
-    <style>
-        body {text-align: center;}
-        li {
-            display: block;
-            font-size: 50px;
-            padding-left: 20px;
-            color: brown;
-        }
-        label {
-            font-size: larger;
-            padding-left: 20px;
-        }
-        input {
-            height: 100px;
-            width: 25%;
-            border-radius: 3%;
-            font-size: 44px;
-            padding: 10px;
-        }
-        button {
-            height: 50px;
-            width: 15%;
-            border-radius: 3%;
-            font-size: 33px;
-        }
-    </style>
-{% endblock %}
+{% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
 
 {% block 'content' %}
     <form action="{% url 'login' %}" method="POST">

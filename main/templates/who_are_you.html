@@ -1,9 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
     
 {% block 'content' %}
     <h1>Who are you?<br>What do you want from this life and from you?</h1>
-    <form action="" method="post" enctype="multipart/form-data">
+    <h2>Remember! You fill it in once!</h2>
+    <form method="post">
         {% csrf_token %}
+        <div>
+            <p>{{ form.name.label_tag }}</p>
+            {{ form.name }}
+        </div>
+        <div>
+            <p>{{ form.surname.label_tag }}</p>
+            {{ form.surname }}
+        </div>
+        <div>
+            <p>{{ form.goals.label_tag }}</p>
+            {{ form.goals }}
+        </div>
+        <div>
+            <p>{{ form.changes.label_tag }}</p>
+            {{ form.changes }}
+        </div>
+        <div>
+            <p>{{ form.what_why_how.label_tag }}</p>
+            {{ form.what_why_how }}
+        </div> 
+        <div>
+            <input type="submit" value="Save my info">
+        </div>
+        
     </form>
 {% endblock %}

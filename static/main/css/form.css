@@ -1,0 +1,38 @@
+body {
+    text-align: center;
+    padding-bottom: 10px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+li {
+    display: block;
+    font-size: 50px;
+    padding-left: 20px;
+    color: brown;
+}
+label {
+    font-size: larger;
+    padding-left: 20px;
+}
+input, textarea {
+    border-radius: 3%;
+    font-size: 44px;
+    padding: 10px;
+}
+input {
+    height: 100px;
+    width: 25%;
+}
+textarea {
+    height: 173px;
+    width: 1105px;
+}
+button, input[type="submit"] {
+    height: 76.8px;
+    width: 564px;
+    border-radius: 3%;
+    font-size: 33px;
+    margin: 10px;
+}
