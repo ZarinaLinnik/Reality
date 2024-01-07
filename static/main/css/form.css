@@ -8,21 +8,21 @@ form {
 }
 li {
     display: block;
-    font-size: 50px;
+    font-size: 25Spx;
     padding-left: 20px;
     color: brown;
 }
 label {
-    font-size: larger;
+    font-size: 40px;
     padding-left: 20px;
 }
 input, textarea {
     border-radius: 3%;
-    font-size: 44px;
+    font-size: 40px;
     padding: 10px;
 }
 input {
-    height: 100px;
+    height: 45px;
     width: 25%;
 }
 textarea {
@@ -30,9 +30,12 @@ textarea {
     width: 1105px;
 }
 button, input[type="submit"] {
-    height: 76.8px;
-    width: 564px;
+    height: 65px;
+    width: 330px;
     border-radius: 3%;
-    font-size: 33px;
+    font-size: 30px;
     margin: 10px;
+}
+p {
+    font-size: 25px;
 }

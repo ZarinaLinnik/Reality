@@ -22,32 +22,33 @@ header > div {
     margin: 20px 40px;
     font-size: 54px;
     background-color:aliceblue;
-    line-height: 120px;
-    width: 198px;
+    height: 75px;
+    width: 115px;
     text-align: center;
     border-radius: 35%;
 }
 header > div a {
     color: rgb(59, 59, 183);
+    font-size: 30px;
     text-decoration: none;
 }
 .liner{
-    height: 160px;
+    height: 115px;
     background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
 }
 h1 {
     color: rgb(30, 117, 211);
     text-indent: 20px;
-    font-size: 59px;
+    font-size: 30px;
 }
 p {
     text-indent: 20px;
-    font-size: 44px;
+    font-size: 20px;
 }
 .you {
-    border: solid 4px; 
+    border: solid 3px; 
     border-radius: 35%; 
-    padding: 10px 5px;
+    padding: 5px 10px;
 }
 
 @media only screen and (max-width:400px) {
