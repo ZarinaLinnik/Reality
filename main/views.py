@@ -26,7 +26,7 @@ def registration(request):
             return redirect('/accounts/profile/')
     else:
         form = UserCreationForm()
-    return render
+    return render(request, 'registration.html', {'form':form})
 
 @login_required
 def creature(request): 
