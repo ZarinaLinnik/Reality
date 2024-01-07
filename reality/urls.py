@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.start),
     path('registration/', main_views.registration, name='registration'),
-    path('accounts/profile/', main_views.creature, name='creature'),
     path('who_are_you/', main_views.add_parameter1_who_are_you, name='who_are_you'),
     path('my_photo/', main_views.my_photo, name='my_photo'),
     path('404/', main_views.error404),
@@ -34,6 +33,8 @@ urlpatterns = [
 urlpatterns += [
     # path('accounts/logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('accounts/', include('django.contrib.auth.urls'), name='authorization'), 
+    path('accounts/profile/', main_views.creature, name='creature'),
+    path('logout/', main_views.log_out, name='logout'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -43,3 +44,4 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # ]
 
 handler404 = 'main.views.error404'
+handler405 = 'main.views.error405'

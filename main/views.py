@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -23,7 +23,7 @@ def registration(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('you/')
+            return redirect('/accounts/profile/')
     else:
         form = UserCreationForm()
     return render
@@ -70,6 +70,11 @@ def my_photo(request):
         form = AddParameterIMGMyPhoto()
     return render(request, 'my_photo.html', {'form': form})
 
+@login_required
+def log_out(request):
+    logout(request)
+    return redirect('/')
+
 # def fill_in_parameter1(request):
 #     return
 # Надо в модели доп опредилитель, чтобы не обнулять
@@ -78,6 +83,11 @@ def error404(request, exception=404):
     number = 404
     name = "Page Not Found"
     return render(request, 'error.html', {'error_number': number, 'error_name': name}, status=404)
+
+def error405(request, exception=405):
+    number = 405
+    name = "Method Not Allowed"
+    return render(request, 'error.html', {'error_number': number, 'error_name': name}, status=405)
 
 
 # Help examples:

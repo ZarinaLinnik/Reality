@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'main/img/favicon.ico' %}">
+    <title>Logged out</title>
+</head>
+<body>
+    <h1>Logged out</h1>
+    <p>Goodbye, my friend &#x11F44B;</p>    
+    <a href="{% url 'login'%}">Click here if you want to login again.</a>
+</body>
+</html>
