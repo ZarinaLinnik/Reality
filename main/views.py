@@ -7,8 +7,10 @@ from django.shortcuts import render, redirect
 from .models import Parameter1WhoAreYou, ParameterIMGMyPhoto
 from .forms import AddParameter1WhoAreYou, AddParameterIMGMyPhoto
 import datetime
+import logging
 
 media_url = settings.MEDIA_URL
+logger = logging.getLogger('main')
 
 
 def start(request):
@@ -30,6 +32,7 @@ def registration(request):
 
 @login_required
 def creature(request): 
+    logger.info("I'm on the main page. 'Creature'! Me and you")
     return render(request, 'creature.html')
 
 @login_required

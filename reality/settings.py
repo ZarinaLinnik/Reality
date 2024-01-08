@@ -51,6 +51,39 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'main_formatter': {
+            'format': "{asctime} - {levelname} {levelno}\n\
+            Module: {module}; Filename:{filename}; FuncName: {funcName}; № line: {lineno} \n\
+            {message} - {pathname} - {processName}\n",
+            'style': "{",
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'main_formatter',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'main_formatter',
+            'filename': 'debug.log',
+        }
+    },
+    'loggers': {
+            'main': {
+                'handlers': ['file', 'console'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+}
+
 ROOT_URLCONF = 'reality.urls'
 
 TEMPLATES = [
