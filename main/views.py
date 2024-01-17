@@ -42,7 +42,11 @@ def log_out(request):
 
 @login_required
 def feedback(request):
-    return 
+    if request.method == 'POST':
+        text = 'Thank you for your answer!'
+    else:
+        text = ''
+    return render(request, 'feedback.html', {'thank_you_text':text})
 
 @login_required
 def add_parameter1_who_are_you(request):
@@ -82,17 +86,22 @@ def my_photo(request):
         form = AddParameterIMGMyPhoto()
     return render(request, 'my_photo.html', {'form': form})
 
+def error400(request, exception=400):
+    name = "Bad Request"
+    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
 
-# def fill_in_parameter1(request):
-#     return
-# Надо в модели доп опредилитель, чтобы не обнулять
+def error403(request, exception=403):
+    name = "Forbidden"
+    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
 
 def error404(request, exception=404):
-    number = 404
     name = "Page Not Found"
-    return render(request, 'error.html', {'error_number': number, 'error_name': name}, status=404)
+    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
 
 def error405(request, exception=405):
-    number = 405
     name = "Method Not Allowed"
-    return render(request, 'error.html', {'error_number': number, 'error_name': name}, status=405)
+    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+
+def error500(request, exception=500):
+    name = "Internal Server Error"
+    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)

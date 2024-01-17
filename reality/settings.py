@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-y_p8(z!q0qwrwv)6vmnz%)&0^!7g)%=h*yo*0l#rq+e%lny*-o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # os.getenv('DEBUG', False) == True
+DEBUG = False
 
-ALLOWED_HOSTS = []  # '127.0.0.1' 
+ALLOWED_HOSTS = ['127.0.0.1',] 
 
 
 # Application definition
@@ -56,24 +55,22 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'main_formatter': {
-            'format': "{asctime} - {levelname} {levelno}\n\
-            Module: {module}; Filename:{filename}; FuncName: {funcName}; № line: {lineno} \n\
-            {message} - {pathname} - {processName}\n",
+            'format': "{asctime} - {levelname} {levelno}; Module: {module} - Filename:{filename} - FuncName:{funcName} - №line:{lineno}; Message:{message} - {pathname} - {processName}",
             'style': "{",
         }
     },
     'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'main_formatter',
-        },
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'main_formatter',
             'filename': 'debug.log',
-        }
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'main_formatter',
+        },
     },
     'loggers': {
             'main': {
@@ -155,6 +152,7 @@ STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

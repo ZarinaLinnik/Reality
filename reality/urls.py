@@ -21,10 +21,13 @@ from django.conf.urls.static import static
 import main.views as main_views
 
 urlpatterns = [
+    path('400/', main_views.error400),
+    path('403/', main_views.error403),
     path('404/', main_views.error404),
     path('405/', main_views.error405),
-    path('admin/', admin.site.urls),
+    path('500/', main_views.error500),
     path('', main_views.start),
+    path('admin/', admin.site.urls),
     path('registration/', main_views.registration, name='registration'),
     path('who_are_you/', main_views.add_parameter1_who_are_you, name='who_are_you'),
     path('my_photo/', main_views.my_photo, name='my_photo'),
@@ -40,6 +43,8 @@ urlpatterns += [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
+handler400 = 'main.views.error400'
+handler403 = 'main.views.error403'
 handler404 = 'main.views.error404'
 handler405 = 'main.views.error405'
+handler500 = 'main.views.error500'
