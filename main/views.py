@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Parameter1WhoAreYou, ParameterIMGMyPhoto
 from .forms import AddParameter1WhoAreYou, AddParameterIMGMyPhoto
 import datetime
@@ -13,8 +13,8 @@ media_url = settings.MEDIA_URL
 logger = logging.getLogger('main')
 
 
-def start(request):
-    return render(request, 'start.html')
+def start(request, farewell=False):
+    return render(request, 'start.html', {'goodbye_words':farewell})
 
 def registration(request): 
     if request.method == 'POST':
@@ -32,8 +32,17 @@ def registration(request):
 
 @login_required
 def creature(request): 
-    logger.info("I'm on the main page. 'Creature'! Me and you")
+    logger.log(20, "\"I'm on the main page. 'Creature'! Me and you\"")
     return render(request, 'creature.html')
+
+@login_required
+def log_out(request):
+    logout(request)
+    return start(request, True)
+
+@login_required
+def feedback(request):
+    return 
 
 @login_required
 def add_parameter1_who_are_you(request):
@@ -73,10 +82,6 @@ def my_photo(request):
         form = AddParameterIMGMyPhoto()
     return render(request, 'my_photo.html', {'form': form})
 
-@login_required
-def log_out(request):
-    logout(request)
-    return redirect('/')
 
 # def fill_in_parameter1(request):
 #     return
@@ -91,9 +96,3 @@ def error405(request, exception=405):
     number = 405
     name = "Method Not Allowed"
     return render(request, 'error.html', {'error_number': number, 'error_name': name}, status=405)
-
-
-# Help examples:
-# posts = Post.objects.all()
-# try-except-finally
-# post = Post.objects.get(id=post_id)

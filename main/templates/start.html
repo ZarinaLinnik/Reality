@@ -25,5 +25,10 @@
             <p><a href="{% url 'creature' %}">Click on me.</a></p>
         </div>
     {% endif %}
+    {% if goodbye_words %}
+    <hr>
+    <p>See you later, our best user! We are waiting for you to see again!</p>
+    <p>To do your best in your real life! &#128524;</p>
+    {% endif %}
 </body>
 </html>

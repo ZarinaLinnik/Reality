@@ -21,22 +21,24 @@ from django.conf.urls.static import static
 import main.views as main_views
 
 urlpatterns = [
+    path('404/', main_views.error404),
+    path('405/', main_views.error405),
     path('admin/', admin.site.urls),
     path('', main_views.start),
     path('registration/', main_views.registration, name='registration'),
     path('who_are_you/', main_views.add_parameter1_who_are_you, name='who_are_you'),
     path('my_photo/', main_views.my_photo, name='my_photo'),
-    path('404/', main_views.error404),
-    path('405/', main_views.error405),
+    path('accounts/profile/', main_views.creature, name='creature'),
+    path('feedback/', main_views.feedback, name='feedback'),
 ]
 
 urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls'), name='authorization'), 
-    path('accounts/profile/', main_views.creature, name='creature'),
-    path('logout/', main_views.log_out, name='logout'),
+    path('accounts/', include('django.contrib.auth.urls'), name='authorization'),
+    path('logout/', main_views.log_out, name='logout'), 
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 handler404 = 'main.views.error404'
