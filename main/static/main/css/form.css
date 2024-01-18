@@ -8,18 +8,19 @@ form {
 }
 li {
     display: block;
-    font-size: 25Spx;
+    font-size: 25px;
     padding-left: 20px;
     color: brown;
 }
 label {
-    font-size: 40px;
+    font-size: 34px;
     padding-left: 20px;
 }
 input, textarea {
     border-radius: 3%;
-    font-size: 40px;
+    font-size: 32px;
     padding: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 input {
     height: 45px;
@@ -33,7 +34,7 @@ button, input[type="submit"] {
     height: 65px;
     width: 330px;
     border-radius: 3%;
-    font-size: 30px;
+    font-size: 32px;
     margin: 10px;
 }
 p {

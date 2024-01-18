@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
+
+{% block 'content' %}
+<h1>You can recommend your suggestions to improve code/site or talk about problems that you can see to me here.</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    {% if thank_you_text %}
+        <p>{{ thank_you_text }}</p>
+    {% endif %}
+    
+    <div><h1>{{ feedback_fields.title.label }}</h1></div>
+    <div>{{ feedback_fields.title }}</div>
+    <div><h1>{{ feedback_fields.text.label }}</h1></div>
+    <div>{{ feedback_fields.text }}</div>
+    <div><input type="submit" value="Send"></div>
+</form>
+{% endblock %}

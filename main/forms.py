@@ -17,3 +17,8 @@ class AddParameterIMGMyPhoto(forms.ModelForm):
     class Meta:
         model = ParameterIMGMyPhoto
         fields = ('image',)
+
+
+class GiveFeedBack(forms.Form):
+    title = forms.CharField(max_length=200, min_length=2, required=True, label='Title')
+    text = forms.CharField(widget=forms.Textarea(), label='Feedback from you')

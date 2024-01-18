@@ -21,8 +21,7 @@
         </div>
     {% else %} 
         <div>
-            <p><a href="{% url 'creature' %}">Your page is waiting for you :&#2665;</a></p>
-            <p><a href="{% url 'creature' %}">Click on me.</a></p>
+            <p><a href="{% url 'creature' %}">Your page is waiting for you :&#2665;<br>Click on me.</a></p>
         </div>
     {% endif %}
     {% if goodbye_words %}
