@@ -13,10 +13,12 @@
         <p>{{ thank_you_text }}</p>
     {% endif %}
     
-    <div><h1>{{ feedback_fields.title.label }}</h1></div>
-    <div>{{ feedback_fields.title }}</div>
-    <div><h1>{{ feedback_fields.text.label }}</h1></div>
-    <div>{{ feedback_fields.text }}</div>
+    <div><h1>{{ feedback_fields.email.label }}</h1></div>
+    <div>{{ feedback_fields.email }}</div>
+    <div><h1>{{ feedback_fields.subject.label }}</h1></div>
+    <div>{{ feedback_fields.subject }}</div>
+    <div><h1>{{ feedback_fields.message.label }}</h1></div>
+    <div>{{ feedback_fields.message }}</div>
     <div><input type="submit" value="Send"></div>
 </form>
 {% endblock %}

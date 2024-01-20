@@ -20,6 +20,7 @@ input, textarea {
     border-radius: 3%;
     font-size: 32px;
     padding: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 input {
     height: 45px;
@@ -28,7 +29,6 @@ input {
 textarea {
     height: 173px;
     width: 1105px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 button, input[type="submit"] {
     height: 65px;

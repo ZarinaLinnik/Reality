@@ -6,7 +6,23 @@
 {% block 'content' %}
     <form action="{% url 'registration' %}" method="POST">
         {% csrf_token %}
-        <div>{{ form.as_p }}</div>
+        {% if special_text %}
+            <li>If you see that then<br>A user with that username already exists.<br>OR<br>Read the conditions below again and write the correct answers</li>
+        {% endif %}
+        <h1>{{ form.username.label }}</h1>
+        <p>{{ form.username }}</p>
+        <p>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+        <h1>{{ form.password1.label }}</h1>
+        <p>{{ form.password1 }}</p>
+        <p>
+            Your password can't be too similar to your other personal information.<br>
+            Your password must contain at least 8 characters.<br>
+            Your password can't be a commonly used password.<br>
+            Your password can't be entirely numeric.
+        </p>
+        <h1>{{ form.password2.label }}</h1>
+        <p>{{ form.password2 }}</p>
+        <p>Enter the same password as before, for verification.</p>
         <div><button type="submit">Register</button></div>
     </form>
 {% endblock %}

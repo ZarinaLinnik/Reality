@@ -29,5 +29,6 @@ class AddParameterIMGMyPhoto(forms.ModelForm):
 
 
 class GiveFeedBack(forms.Form):
-    title = forms.CharField(max_length=200, min_length=2, required=True, label='Title')
-    text = forms.CharField(widget=forms.Textarea(), label='Feedback from you')
+    email = forms.EmailField(label='Your email')
+    subject = forms.CharField(max_length=200, min_length=2, required=True, label='Subject')
+    message = forms.CharField(widget=forms.Textarea(), label='Message')

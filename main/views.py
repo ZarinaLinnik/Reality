@@ -20,6 +20,7 @@ def start(request, farewell=False):
 
 
 def registration(request): 
+    special_text = False
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -29,9 +30,11 @@ def registration(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('/accounts/profile/')
+        else:
+            special_text = True
     else:
         form = UserCreationForm()
-    return render(request, 'registration.html', {'form':form})
+    return render(request, 'registration.html', {'form':form, 'special_text':special_text})
 
 
 @login_required
@@ -39,10 +42,11 @@ def feedback(request):
     form = GiveFeedBack()
     if request.method == 'POST':
         username = request.user
-        title = request.POST['title']
-        context = request.POST['text'] + f'\nby {username}'
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = f'\tFrom {email}\n\n\t' + request.POST['message'] + f'\n\n\tBy {username}'
 
-        send_mail(title, context, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER,])
+        send_mail(subject, message, email, ['test123testZarina@gmail.com',])
 
         text = 'Thank you for your answer!'
     else:
