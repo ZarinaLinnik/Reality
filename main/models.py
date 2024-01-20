@@ -50,11 +50,21 @@ class Parameter3Environment(BaseModel):
     class Meta:
         verbose_name_plural = 'Parameter3Environment'
 
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
+
 
 class Parameter4Habits(BaseModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter4Habits'
+
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
 
 
 class Parameter5FreeTime(BaseModel): 
@@ -62,11 +72,21 @@ class Parameter5FreeTime(BaseModel):
     class Meta:
         verbose_name_plural = 'Parameter5FreeTime'
 
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
 
-class Parameter6LookLike(BaseModel): 
+
+class Parameter6Appearance(BaseModel): 
 
     class Meta:
-        verbose_name_plural = 'Parameter6LookLike'
+        verbose_name_plural = 'Parameter6Appearance'
+
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
 
 
 class Parameter7Behavior(BaseModel): 
@@ -74,8 +94,18 @@ class Parameter7Behavior(BaseModel):
     class Meta:
         verbose_name_plural = 'Parameter7Behavior'
 
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
 
-class Parameter8ThoughtsDirection(BaseModel): 
+
+class Parameter8Mind(BaseModel): 
 
     class Meta:
-        verbose_name_plural = 'Parameter8ThoughtsDirection'
+        verbose_name_plural = 'Parameter8Mind'
+
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)

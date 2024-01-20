@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
-from django.shortcuts import render, redirect, HttpResponse
-from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6LookLike, Parameter7Behavior, Parameter8ThoughtsDirection
-from .forms import GiveFeedBack, AddParameterIMGMyPhoto, AddParameter1WhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6LookLike, AddParameter7Behavior, AddParameter8ThoughtsDirection
+from django.shortcuts import render, redirect
+from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
+from .forms import GiveFeedBack, AddParameterIMGMyPhoto, AddParameter1WhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6Appearance, AddParameter7Behavior, AddParameter8Mind
 import datetime
 import logging
 
@@ -110,7 +110,7 @@ def add_parameter2_what_do_you_do(request):
     user = User.objects.get(username=request.user)
     if Parameter2WhatDoYouDo.objects.filter(user_id=user.id).exists() and request.method == 'GET':
         model = Parameter2WhatDoYouDo.objects.get(user_id=user.id)
-        return render(request, 'show_what_do_you_do.html', {'model':model})
+        return render(request, 'show.html', {'model':model})
     
     if request.method == 'POST':
         form = AddParameter2WhatDoYouDo(request.POST)
@@ -125,12 +125,118 @@ def add_parameter2_what_do_you_do(request):
     return render(request, 'what_do_you_do.html', {'form':form})
 
 
-def add_parameter3_environment(request): pass
-def add_parameter4_habits(request): pass
-def add_parameter5_free_time(request): pass
-def add_parameter6_look_like(request): pass
-def add_parameter7_behavior(request): pass
-def add_parameter8_thoughts_direction(request): pass
+def add_parameter3_environment(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter3Environment.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter3Environment.objects.get(user_id=user.id)
+        return render(request, 'show.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter3Environment(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/environment/')
+    else:
+        form = AddParameter3Environment()
+    return render(request, 'questions.html', {'form':form, 'main_question':'What does your room or environment look like?'})
+
+
+def add_parameter4_habits(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter4Habits.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter4Habits.objects.get(user_id=user.id)
+        return render(request, 'show.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter4Habits(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/habits/')
+    else:
+        form = AddParameter4Habits()
+    return render(request, 'questions.html', {'form':form, 'main_question':'What are your habits?'})
+
+
+def add_parameter5_free_time(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter5FreeTime.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter5FreeTime.objects.get(user_id=user.id)
+        return render(request, 'show.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter5FreeTime(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/free_time/')
+    else:
+        form = AddParameter5FreeTime()
+    return render(request, 'questions.html', {'form':form, 'main_question':'How do you spend your free time?'})
+
+
+def add_parameter6_appearance(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter6Appearance.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter6Appearance.objects.get(user_id=user.id)
+        return render(request, 'show.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter6Appearance(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/appearance/')
+    else:
+        form = AddParameter6Appearance()
+    return render(request, 'questions.html', {'form':form, 'main_question':'What do you look like?'})
+
+    
+def add_parameter7_behavior(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter7Behavior.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter7Behavior.objects.get(user_id=user.id)
+        return render(request, 'show.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter7Behavior(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/behavior/')
+    else:
+        form = AddParameter7Behavior()
+    return render(request, 'questions.html', {'form':form, 'main_question':'What is your behavior like?'})
+
+
+def add_parameter8_mind(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter8Mind.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter8Mind.objects.get(user_id=user.id)
+        return render(request, 'show.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter8Mind(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/mind/')
+    else:
+        form = AddParameter8Mind()
+    return render(request, 'questions.html', {'form':form, 'main_question':'How do you think?'})
 
 
 def error400(request, exception=400):
