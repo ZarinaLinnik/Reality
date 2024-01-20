@@ -67,7 +67,7 @@ def add_parameter1_who_are_you(request):
     user = User.objects.get(username=request.user)
     if Parameter1WhoAreYou.objects.filter(user_id=user.id).exists() and request.method == 'GET':
         model = Parameter1WhoAreYou.objects.get(user_id=user.id)
-        return render(request, 'show_content.html', {'model':model})
+        return render(request, 'show_who_are_you.html', {'model':model})
     
     if request.method == 'POST':
         form = AddParameter1WhoAreYou(request.POST)
@@ -81,6 +81,15 @@ def add_parameter1_who_are_you(request):
     else:
         form = AddParameter1WhoAreYou()
     return render(request, 'who_are_you.html', {'form':form})
+
+
+def add_parameter2_what_do_you_do(request): pass
+def add_parameter3_environment(request): pass
+def add_parameter4_habits(request): pass
+def add_parameter5_free_time(request): pass
+def add_parameter6_look_like(request): pass
+def add_parameter7_behavior(request): pass
+def add_parameter8_thoughts_direction(request): pass
 
 
 @login_required

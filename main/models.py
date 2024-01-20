@@ -15,6 +15,62 @@ class Parameter1WhoAreYou(models.Model):
     date_time = models.DateTimeField()
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter2WhatDoYouDo(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter2WhatDoYouDo'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter3Environment(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter3Environment'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter4Habits(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter4Habits'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter5FreeTime(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter5FreeTime'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter6LookLike(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter6LookLike'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter7Behavior(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter7Behavior'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Parameter8ThoughtsDirection(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Parameter8ThoughtsDirection'
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
 
 class ParameterIMGMyPhoto(models.Model):

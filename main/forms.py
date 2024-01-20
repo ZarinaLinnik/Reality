@@ -12,6 +12,15 @@ class AddParameter1WhoAreYou(forms.ModelForm):
         widgets = {'goals':forms.Textarea(), 'changes':forms.Textarea(), 'what_why_how':forms.Textarea(),}
 
 
+class AddParameter2WhatDoYouDo(forms.ModelForm): pass
+class AddParameter3Environment(forms.ModelForm): pass
+class AddParameter4Habits(forms.ModelForm): pass
+class AddParameter5FreeTime(forms.ModelForm): pass
+class AddParameter6LookLike(forms.ModelForm): pass
+class AddParameter7Behavior(forms.ModelForm): pass
+class AddParameter8ThoughtsDirection(forms.ModelForm): pass
+
+
 class AddParameterIMGMyPhoto(forms.ModelForm):
 
     class Meta:
