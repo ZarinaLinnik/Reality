@@ -15,6 +15,10 @@
         -->
         {% block 'questions' %}
         {% endblock %}
+        <h1>{{ form.changes.label }}</h1>
+        <p>{{ form.changes }}</p>
+        <h1>{{ form.what_why_how.label }}</h1>
+        <p>{{ form.what_why_how }}</p>
         <div>
             <input type="submit" value="Save my info">
         </div>

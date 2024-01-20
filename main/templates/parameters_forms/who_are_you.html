@@ -3,24 +3,10 @@
 {% block 'questions' %}
     <h1>Who are you?<br>What do you want from this life and from you?</h1>
     <h2>Remember! You fill it in once!</h2>
-    <div>
-        <p>{{ form.name.label_tag }}</p>
-        {{ form.name }}
-    </div>
-    <div>
-        <p>{{ form.surname.label_tag }}</p>
-        {{ form.surname }}
-    </div>
-    <div>
-        <p>{{ form.goals.label_tag }}</p>
-        {{ form.goals }}
-    </div>
-    <div>
-        <p>{{ form.changes.label_tag }}</p>
-        {{ form.changes }}
-    </div>
-    <div>
-        <p>{{ form.what_why_how.label_tag }}</p>
-        {{ form.what_why_how }}
-    </div> 
+        <h1>{{ form.name.label }}</h1>
+        <p>{{ form.name }}</p>
+        <h1>{{ form.surname.label }}</h1>
+        <p>{{ form.surname }}</p>
+        <h1>{{ form.goals.label }}</h1>
+        <p>{{ form.goals }}</p>
 {% endblock %}

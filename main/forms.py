@@ -1,5 +1,12 @@
 from django import forms
-from .models import Parameter1WhoAreYou, ParameterIMGMyPhoto
+from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo
+
+
+    # class Meta:
+    #     model = ...
+    #     fields = ('...', 'changes', 'what_why_how')
+    #     exlude = ('date_time', 'user')
+    #     labels = {'...':'...', 'changes':'What do you want to change from this list', 'what_why_how':'What-Why-How are going to achieve that?'}
 
 
 class GiveFeedBack(forms.Form):
@@ -21,11 +28,31 @@ class AddParameter1WhoAreYou(forms.ModelForm):
         model = Parameter1WhoAreYou
         fields = ('name', 'surname', 'goals', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
-        labels = {'name':'Name', 'surname':'Surname', 'goals':'Your goals', 'changes':'What do you want to change from this list', 'what_why_how':'What-Why-How are going to achieve that?'}
-        widgets = {'goals':forms.Textarea(), 'changes':forms.Textarea(), 'what_why_how':forms.Textarea(),}
+        labels = {
+            'name':'Name',
+            'surname':'Surname', 
+            'goals':'Your goals', 
+            'changes':'What do you want to change from this list', 
+            'what_why_how':'What-Why-How are going to achieve that?'
+            }
 
 
-class AddParameter2WhatDoYouDo(forms.ModelForm): pass
+class AddParameter2WhatDoYouDo(forms.ModelForm): 
+
+    class Meta:
+        model = Parameter2WhatDoYouDo
+        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        exlude = ('date_time', 'user')
+        labels = {
+            'text1':'How do you prioritize and manage your tasks?',
+            'text2':'Are there any specific challenges or goals you are currently working on?', 
+            'text3':'How do you balance your work/study with other aspects of your life?', 
+            'text4':'Do you have any strategies or routines that help you stay organized and productive?', 
+            'changes':'What do you want to change from this list', 
+            'what_why_how':'What-Why-How are going to achieve that?',
+            }
+
+
 class AddParameter3Environment(forms.ModelForm): pass
 class AddParameter4Habits(forms.ModelForm): pass
 class AddParameter5FreeTime(forms.ModelForm): pass

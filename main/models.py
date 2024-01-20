@@ -39,6 +39,11 @@ class Parameter2WhatDoYouDo(BaseModel):
     class Meta:
         verbose_name_plural = 'Parameter2WhatDoYouDo'
 
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
+
 
 class Parameter3Environment(BaseModel): 
 

@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse
-from .models import Parameter1WhoAreYou, ParameterIMGMyPhoto
-from .forms import AddParameter1WhoAreYou, AddParameterIMGMyPhoto, GiveFeedBack
+from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6LookLike, Parameter7Behavior, Parameter8ThoughtsDirection
+from .forms import GiveFeedBack, AddParameterIMGMyPhoto, AddParameter1WhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6LookLike, AddParameter7Behavior, AddParameter8ThoughtsDirection
 import datetime
 import logging
 
@@ -67,36 +67,6 @@ def log_out(request):
 
 
 @login_required
-def add_parameter1_who_are_you(request):
-    user = User.objects.get(username=request.user)
-    if Parameter1WhoAreYou.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter1WhoAreYou.objects.get(user_id=user.id)
-        return render(request, 'show_who_are_you.html', {'model':model})
-    
-    if request.method == 'POST':
-        form = AddParameter1WhoAreYou(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/who_are_you/')
-
-    else:
-        form = AddParameter1WhoAreYou()
-    return render(request, 'who_are_you.html', {'form':form})
-
-
-def add_parameter2_what_do_you_do(request): pass
-def add_parameter3_environment(request): pass
-def add_parameter4_habits(request): pass
-def add_parameter5_free_time(request): pass
-def add_parameter6_look_like(request): pass
-def add_parameter7_behavior(request): pass
-def add_parameter8_thoughts_direction(request): pass
-
-
-@login_required
 def my_photo(request):
     user = User.objects.get(username=request.user)
     if ParameterIMGMyPhoto.objects.filter(user_id=user.id).exists() and request.method == 'GET':
@@ -114,6 +84,53 @@ def my_photo(request):
     else:
         form = AddParameterIMGMyPhoto()
     return render(request, 'my_photo.html', {'form': form})
+
+
+@login_required
+def add_parameter1_who_are_you(request):
+    user = User.objects.get(username=request.user)
+    if Parameter1WhoAreYou.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter1WhoAreYou.objects.get(user_id=user.id)
+        return render(request, 'show_who_are_you.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter1WhoAreYou(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/who_are_you/')
+    else:
+        form = AddParameter1WhoAreYou()
+    return render(request, 'who_are_you.html', {'form':form})
+
+
+def add_parameter2_what_do_you_do(request): 
+    user = User.objects.get(username=request.user)
+    if Parameter2WhatDoYouDo.objects.filter(user_id=user.id).exists() and request.method == 'GET':
+        model = Parameter2WhatDoYouDo.objects.get(user_id=user.id)
+        return render(request, 'show_what_do_you_do.html', {'model':model})
+    
+    if request.method == 'POST':
+        form = AddParameter2WhatDoYouDo(request.POST)
+        if form.is_valid():
+            taken_info = form.save(commit=False)
+            taken_info.date_time = datetime.datetime.now()
+            taken_info.user = User.objects.get(username=request.user)
+            taken_info.save()         
+            return redirect('/what_do_you_do/')
+    else:
+        form = AddParameter2WhatDoYouDo()
+    return render(request, 'what_do_you_do.html', {'form':form})
+
+
+def add_parameter3_environment(request): pass
+def add_parameter4_habits(request): pass
+def add_parameter5_free_time(request): pass
+def add_parameter6_look_like(request): pass
+def add_parameter7_behavior(request): pass
+def add_parameter8_thoughts_direction(request): pass
 
 
 def error400(request, exception=400):
