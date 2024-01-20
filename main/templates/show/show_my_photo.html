@@ -11,5 +11,9 @@
 {% endblock %}
 
 {% block 'content' %}
-    <img src="{{ media }}{{ image }}">
+    <img src="{{ media }}{{ model.image }}">
+    <h1>Date&Time of your picture</h1>
+    <p>{{ model.date_time_pict }}</p>
+    <hr>
+    <p>{{ model.date_time }}</p>
 {% endblock %}

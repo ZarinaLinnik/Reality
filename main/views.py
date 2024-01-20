@@ -101,13 +101,14 @@ def my_photo(request):
     user = User.objects.get(username=request.user)
     if ParameterIMGMyPhoto.objects.filter(user_id=user.id).exists() and request.method == 'GET':
         model = ParameterIMGMyPhoto.objects.get(user_id=user.id)
-        return render(request, 'show_my_photo.html', {'image':model.image, 'media':media_url})
+        return render(request, 'show_my_photo.html', {'model':model, 'media':media_url})
     
     if request.method == 'POST':
         form = AddParameterIMGMyPhoto(request.POST, request.FILES)
         if form.is_valid():
             taken_info = form.save(commit=False)
             taken_info.user = user
+            taken_info.date_time = datetime.datetime.now()
             taken_info.save()
             return redirect('/my_photo/')  
     else:
