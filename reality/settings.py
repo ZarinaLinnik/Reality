@@ -66,6 +66,7 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'formatter': 'main_formatter',
             'filename': 'debug.log',
+            'encoding': 'utf-8',
         },
         'console': {
             'level': 'DEBUG',
