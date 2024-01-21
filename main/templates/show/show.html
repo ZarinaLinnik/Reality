@@ -4,7 +4,8 @@
 {% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
 
 {% block 'content' %}
-    <h1>Your answers:</h1>
+    <h1>{{ model.text0.label }}</h1>
+    <p>{{ model.text0 }}</p>
     <p>{{ model.text1 }}</p>
     <p>{{ model.text2 }}</p>
     <p>{{ model.text3 }}</p>

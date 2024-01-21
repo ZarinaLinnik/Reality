@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render, redirect
-from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
-from .forms import GiveFeedBack, AddParameterIMGMyPhoto, AddParameter1WhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6Appearance, AddParameter7Behavior, AddParameter8Mind
+from .models import ParameterIMGMyPhoto as MyPhoto, Parameter1WhoAreYou as WhoAreYou, Parameter2WhatDoYouDo , Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
+from .forms import GiveFeedBack, AddParameterIMGMyPhoto as AddMyPhoto, AddParameter1WhoAreYou as AddWhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6Appearance, AddParameter7Behavior, AddParameter8Mind
 import datetime
 import logging
 
@@ -56,8 +56,10 @@ def feedback(request):
 
 @login_required
 def creature(request): 
-    logger.log(20, "\"I'm on the main page. 'Creature'! Me and you\"")
-    return render(request, 'creature.html')
+    user = User.objects.get(username=request.user)
+    way = MyPhoto.objects.get(user_id=user.id).image
+    logger.log(20, f"\"Way to user's img: {media_url}{way} \"")
+    return render(request, 'creature.html', {'media': media_url, 'way':way})
 
 
 @login_required
@@ -69,42 +71,58 @@ def log_out(request):
 @login_required
 def my_photo(request):
     user = User.objects.get(username=request.user)
-    if ParameterIMGMyPhoto.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = ParameterIMGMyPhoto.objects.get(user_id=user.id)
-        return render(request, 'show_my_photo.html', {'model':model, 'media':media_url})
-    
     if request.method == 'POST':
-        form = AddParameterIMGMyPhoto(request.POST, request.FILES)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.user = user
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.save()
-            return redirect('/my_photo/')  
+        form = AddMyPhoto(request.POST, request.FILES)
+        if MyPhoto.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                form_image = form.cleaned_data['image']
+                form_date_time_pict = form.cleaned_data['date_time_pict']
+                MyPhoto.objects.filter(user_id=user.id).update(image=form_image, date_time=datetime.datetime.now(), date_time_pict=form_date_time_pict)
+        else:
+            if form.is_valid():
+                taken_info = form.save(commit=False)
+                taken_info.user = user
+                taken_info.date_time = datetime.datetime.now()
+                taken_info.save()
+        return redirect('/my_photo/')                    
     else:
-        form = AddParameterIMGMyPhoto()
-    return render(request, 'my_photo.html', {'form': form})
+        form = AddMyPhoto()
+        if MyPhoto.objects.filter(user_id=user.id).exists():
+            model = MyPhoto.objects.get(user_id=user.id)
+            return render(request, 'show_my_photo.html', {'model':model, 'media':media_url, 'form':form})
+        else:
+            return render(request, 'my_photo.html', {'form': form})
 
 
 @login_required
 def add_parameter1_who_are_you(request):
     user = User.objects.get(username=request.user)
-    if Parameter1WhoAreYou.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter1WhoAreYou.objects.get(user_id=user.id)
-        return render(request, 'show_who_are_you.html', {'model':model})
-    
     if request.method == 'POST':
-        form = AddParameter1WhoAreYou(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/who_are_you/')
+        form = AddWhoAreYou(request.POST)
+        if WhoAreYou.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                form_text0 = form.cleaned_data['text0']
+                form_changes = form.cleaned_data['changes']
+                form_wwh = form.cleaned_data['what_why_how']
+                form_name = form.cleaned_data['name']
+                form_surname = form.cleaned_data['surname']
+                form_goals = form.cleaned_data['goals']
+                WhoAreYou.objects.filter(user_id=user.id).update(text0=form_text0, changes=form_changes, what_why_how=form_wwh, date_time=datetime.datetime.now(), name=form_name, surname=form_surname, goals=form_goals)
+        else:
+            if form.is_valid():
+                taken_info = form.save(commit=False)
+                taken_info.date_time = datetime.datetime.now()
+                taken_info.user = user
+                taken_info.save()         
+        return redirect('/who_are_you/')                   
     else:
-        form = AddParameter1WhoAreYou()
-    return render(request, 'who_are_you.html', {'form':form})
-
+        form = AddWhoAreYou()
+        if WhoAreYou.objects.filter(user_id=user.id).exists():
+            model = WhoAreYou.objects.get(user_id=user.id)
+            return render(request, 'show_who_are_you.html', {'model':model, 'form':form})
+        else:
+            return render(request, 'who_are_you.html', {'form':form}) 
+    
 
 def add_parameter2_what_do_you_do(request): 
     user = User.objects.get(username=request.user)
@@ -122,7 +140,7 @@ def add_parameter2_what_do_you_do(request):
             return redirect('/what_do_you_do/')
     else:
         form = AddParameter2WhatDoYouDo()
-    return render(request, 'what_do_you_do.html', {'form':form})
+    return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter3_environment(request): 
@@ -141,7 +159,7 @@ def add_parameter3_environment(request):
             return redirect('/environment/')
     else:
         form = AddParameter3Environment()
-    return render(request, 'questions.html', {'form':form, 'main_question':'What does your room or environment look like?'})
+    return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter4_habits(request): 
@@ -160,7 +178,7 @@ def add_parameter4_habits(request):
             return redirect('/habits/')
     else:
         form = AddParameter4Habits()
-    return render(request, 'questions.html', {'form':form, 'main_question':'What are your habits?'})
+    return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter5_free_time(request): 
@@ -179,7 +197,7 @@ def add_parameter5_free_time(request):
             return redirect('/free_time/')
     else:
         form = AddParameter5FreeTime()
-    return render(request, 'questions.html', {'form':form, 'main_question':'How do you spend your free time?'})
+    return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter6_appearance(request): 
@@ -198,7 +216,7 @@ def add_parameter6_appearance(request):
             return redirect('/appearance/')
     else:
         form = AddParameter6Appearance()
-    return render(request, 'questions.html', {'form':form, 'main_question':'What do you look like?'})
+    return render(request, 'questions.html', {'form':form})
 
     
 def add_parameter7_behavior(request): 
@@ -217,7 +235,7 @@ def add_parameter7_behavior(request):
             return redirect('/behavior/')
     else:
         form = AddParameter7Behavior()
-    return render(request, 'questions.html', {'form':form, 'main_question':'What is your behavior like?'})
+    return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter8_mind(request): 
@@ -236,7 +254,7 @@ def add_parameter8_mind(request):
             return redirect('/mind/')
     else:
         form = AddParameter8Mind()
-    return render(request, 'questions.html', {'form':form, 'main_question':'How do you think?'})
+    return render(request, 'questions.html', {'form':form})
 
 
 def error400(request, exception=400):

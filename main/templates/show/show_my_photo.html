@@ -5,16 +5,28 @@
 {% block 'style' %}
 <style>
     img {
-        height: 50vh;
+        align-self: center;
+        width: 44vw;
         border-radius: 35%;
     }
 </style>
 {% endblock %}
 
 {% block 'content' %}
+<form method="post">
+    {% csrf_token %}
+    <h1>Image</h1>
     <img src="{{ media }}{{ model.image }}">
-    <h1>Date&Time of your picture</h1>
+    <p>{{ form.image }}</p>
+
+    <h1>Date&Time<br>when your image was created.<br>Pattern: 2024-01-07 20:19:11.00</h1>
     <p>{{ model.date_time_pict }}</p>
-    <hr>
+    <p>{{ form.date_time_pict }}</p>
+
     <p>{{ model.date_time }}</p>
+
+    <div>
+        <input type="submit" value="Save my info">
+    </div>
+</form>
 {% endblock %}

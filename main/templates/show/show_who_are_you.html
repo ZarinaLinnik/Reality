@@ -2,21 +2,39 @@
 {% load static %}
 
 {% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
-{% block 'style' %}
-<style>
-    #text {
-        font-size: large;
-    }
-</style>
-{% endblock %}
 
 {% block 'content' %}
-    <h1>Your answers:</h1>
+<form method="post">
+    {% csrf_token %}
+    <h1 style="text-decoration: underline;">Copy your text, paste in the gaps and edit!<br>Or you will get lost your data.</h1>
+    <h1>{{ form.text0.label }}</h1>
+    <p>{{ model.text0 }}</p>
+    <p>{{ form.text0 }}</p>
+
+    <h1>{{ form.name.label }}</h1>
     <p>{{ model.name }}</p>
+    <p>{{ form.name }}</p>
+
+    <h1>{{ form.surname.label }}</h1>
     <p>{{ model.surname }}</p>
+    <p>{{ form.surname }}</p>
+
+    <h1>{{ form.goals.label }}</h1>
     <p>{{ model.goals }}</p>
+    <p>{{ form.goals }}</p>
+
+    <h1>{{ form.changes.label }}</h1>
     <p>{{ model.changes }}</p>
+    <p>{{ form.changes }}</p>
+
+    <h1>{{ form.what_why_how.label }}</h1>
     <p>{{ model.what_why_how }}</p>
-    <hr>
-    <p>{{ model.date_time }}</p>
+    <p>{{ form.what_why_how }}</p>
+
+    <p>{{ model.date_time }}</p> 
+
+    <div>
+        <input type="submit" value="Save my info">
+    </div>
+</form>
 {% endblock %}

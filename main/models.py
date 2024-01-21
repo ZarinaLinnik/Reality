@@ -7,6 +7,7 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+    text0 = models.TextField(blank=True)
     changes = models.TextField(blank=True)
     what_why_how = models.TextField(blank=True)
     date_time = models.DateTimeField()

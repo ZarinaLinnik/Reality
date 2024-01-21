@@ -14,13 +14,17 @@
         <div class="parameter2"><p><a href="{% url 'what_do_you_do' %}">What do you do every week? (work, study, housework)</a></p></div>
         <div class="parameter3"><p><a href="{% url 'environment' %}">What does your room or environment look like?</a></p></div>
         <div class="parameter4"><p><a href="{% url 'habits' %}">What are your habits?</a></p></div>
+
         <div class="parameter_img">
-            <a href="{% url 'my_photo' %}">
-                <img src="{% static 'main/img/this_is_me.jpg' %}" alt="this_human" title="This is you :&rang;" height="500px", width="300px"/>
-            </a>
+            <picture>
+                <a href="{% url 'my_photo' %}">
+                    <img src="{% static 'main/img/this_is_me.jpg' %}" alt="This is a human" title="This is a human :&rang;"/>
+                    <source srcset="{{ media }}{{ way }}" alt="This is you" title="This is you :&rang;">
+                </a>
+            </picture>              
         </div>
+
         <div class="parameter5"><p><a href="{% url 'free_time' %}">How do you spend your free time?</a></p></div>
-        <!-- In developing... (where style="opacity: 0;") and no # -->
         <div class="parameter6">
             <h1>Appearance</h1>
             <p><a href="{% url 'appearance' %}">What do you look like?</a></p>
@@ -36,6 +40,7 @@
     </div>
     
     <br>
+
     <h1>Don't forget about the connection.</h1>
     <p class="addition">For instance, the things that you do every day shape your thoughts and habits, just like how your free time and environment can influence you.</p>
     <p class="addition">Additionally, if you think about doing the right things but don't actually do them, you develop a habit of 'not doing'.</p>

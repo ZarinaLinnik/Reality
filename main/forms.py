@@ -1,12 +1,17 @@
 from django import forms
 from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
 
-
-    # class Meta:
-    #     model = ...
-    #     fields = ('...', 'changes', 'what_why_how')
-    #     exlude = ('date_time', 'user')
-    #     labels = {'...':'...', 'changes':'What do you want to change from this list', 'what_why_how':'What-Why-How are going to achieve that?'}
+'''
+    class Meta:
+        model = ...
+        fields = ('text0', '...', 'changes', 'what_why_how')
+        exlude = ('date_time', 'user')
+        labels = {
+            'text0':'main_question',
+            '...':'...', 
+            'changes':'What do you want to change from this list', 
+            'what_why_how':'What-Why-How are going to achieve that?'}
+'''
 
 
 class GiveFeedBack(forms.Form):
@@ -26,14 +31,15 @@ class AddParameter1WhoAreYou(forms.ModelForm):
 
     class Meta:
         model = Parameter1WhoAreYou
-        fields = ('name', 'surname', 'goals', 'changes', 'what_why_how')
+        fields = ('text0', 'name', 'surname', 'goals', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
-            'name':'Name',
-            'surname':'Surname', 
-            'goals':'Your goals', 
+            'text0':'Who are you? What do you want from this life and from you?',
+            'name':'What is your name?',
+            'surname':'What is your surname?', 
+            'goals':'What are your goals', 
             'changes':'What do you want to change from this list', 
-            'what_why_how':'What-Why-How are going to achieve that?'
+            'what_why_how':'What-Why-How are going to achieve that?',
             }
 
 
@@ -41,9 +47,10 @@ class AddParameter2WhatDoYouDo(forms.ModelForm):
 
     class Meta:
         model = Parameter2WhatDoYouDo
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'What do you do every week? (work, study, housework)',
             'text1':'How do you prioritize and manage your tasks?',
             'text2':'Are there any specific challenges or goals you are currently working on?', 
             'text3':'How do you balance your work/study with other aspects of your life?', 
@@ -57,9 +64,10 @@ class AddParameter3Environment(forms.ModelForm):
     
     class Meta:
         model = Parameter3Environment
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'What does your room or environment look like?',
             'text1':'What is the overall atmosphere or vibe of your room?',
             'text2':'What objects or decorations are present that reflect your personality or interests?', 
             'text3':'How do you keep your room organized and clean?', 
@@ -73,9 +81,10 @@ class AddParameter4Habits(forms.ModelForm):
         
     class Meta:
         model = Parameter4Habits
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'What are your habits?',
             'text1':'Are there any habits that you find particularly beneficial or important?',
             'text2':'Do you have any habits that you would like to change or improve?', 
             'text3':'How do your habits contribute to your overall well-being or productivity?', 
@@ -89,9 +98,10 @@ class AddParameter5FreeTime(forms.ModelForm):
         
     class Meta:
         model = Parameter5FreeTime
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'How do you spend your free time?',
             'text1':'What activities or hobbies do you enjoy during your leisure hours?',
             'text2':'Do you prefer to spend your free time alone or with others?', 
             'text3':'How do you find a balance between relaxation and pursuing your interests?', 
@@ -105,9 +115,10 @@ class AddParameter6Appearance(forms.ModelForm):
         
     class Meta:
         model = Parameter6Appearance
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'What do you look like?',
             'text1':'What physical features do you find unique or distinctive about yourself?',
             'text2':'How do you typically dress or present yourself to others?', 
             'text3':'Do you have any specific grooming routines or practices?', 
@@ -121,9 +132,10 @@ class AddParameter7Behavior(forms.ModelForm):
         
     class Meta:
         model = Parameter7Behavior
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'What is your behavior like?',
             'text1':'Are you generally extroverted, introverted, or somewhere in between?',
             'text2':'How do you interact with others in social settings?', 
             'text3':'Do you have any behavioral patterns or tendencies that you are aware of?', 
@@ -137,9 +149,10 @@ class AddParameter8Mind(forms.ModelForm):
         
     class Meta:
         model = Parameter8Mind
-        fields = ('text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
+        fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
         exlude = ('date_time', 'user')
         labels = {
+            'text0':'How do you think?',
             'text1':'Are you more analytical or intuitive in your thinking process?',
             'text2':'Do you prefer to think things through methodically or rely on your instincts?', 
             'text3':'Are there any specific thinking strategies or techniques that you employ?', 

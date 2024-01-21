@@ -1,12 +1,10 @@
 {% extends 'base_form.html' %} 
 
 {% block 'questions' %}
-    <h1>Who are you?<br>What do you want from this life and from you?</h1>
-    <h2>Remember! You fill it in once!</h2>
-        <h1>{{ form.name.label }}</h1>
-        <p>{{ form.name }}</p>
-        <h1>{{ form.surname.label }}</h1>
-        <p>{{ form.surname }}</p>
-        <h1>{{ form.goals.label }}</h1>
-        <p>{{ form.goals }}</p>
+    <h1>{{ form.name.label }}</h1>
+    <p>{{ form.name }}</p>
+    <h1>{{ form.surname.label }}</h1>
+    <p>{{ form.surname }}</p>
+    <h1>{{ form.goals.label }}</h1>
+    <p>{{ form.goals }}</p>
 {% endblock %}

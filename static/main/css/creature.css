@@ -8,6 +8,7 @@ a {
 }
 img {
     border-radius: 40%;
+    width: 23vw;
 }
 .grid-container {
     display: grid;
