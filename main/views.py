@@ -94,11 +94,12 @@ def my_photo(request):
                 save_taken_info(form, user)
         return redirect('/my_photo/')                    
     else:
-        form = AddMyPhoto()
         if MyPhoto.objects.filter(user_id=user.id).exists():
             model = MyPhoto.objects.get(user_id=user.id)
+            form = AddMyPhoto(instance=model)
             return render(request, 'show_my_photo.html', {'model':model, 'media':media_url, 'form':form})
         else:
+            form = AddMyPhoto()
             return render(request, 'my_photo.html', {'form': form})
 
 
@@ -115,151 +116,202 @@ def add_parameter1_who_are_you(request):
                 form_name = form.cleaned_data['name']
                 form_surname = form.cleaned_data['surname']
                 form_goals = form.cleaned_data['goals']
-                WhoAreYou.objects.filter(user_id=user.id).update(text0=form_text0, changes=form_changes, what_why_how=form_wwh, date_time=datetime.datetime.now(), name=form_name, surname=form_surname, goals=form_goals)
+                WhoAreYou.objects.filter(user_id=user.id).update(
+                    text0=form_text0, 
+                    changes=form_changes, 
+                    what_why_how=form_wwh, 
+                    date_time=datetime.datetime.now(), 
+                    name=form_name, 
+                    surname=form_surname, 
+                    goals=form_goals
+                    )
         else:
             if form.is_valid():
                 save_taken_info(form, user)         
         return redirect('/who_are_you/')                   
     else:
-        form = AddWhoAreYou()
         if WhoAreYou.objects.filter(user_id=user.id).exists():
             model = WhoAreYou.objects.get(user_id=user.id)
-            return render(request, 'show_who_are_you.html', {'model':model, 'form':form})
+            form = AddWhoAreYou(instance=model)
+            date_time = model.date_time
+            return render(request, 'show_who_are_you.html', {'date_time':date_time, 'form':form})
         else:
+            form = AddWhoAreYou()
             return render(request, 'who_are_you.html', {'form':form}) 
     
 
+def update_model(form, user, class_model):
+    form_text0 = form.cleaned_data['text0']
+    form_text1 = form.cleaned_data['text1']
+    form_text2 = form.cleaned_data['text2']
+    form_text3 = form.cleaned_data['text3']
+    form_text4 = form.cleaned_data['text4']
+    form_changes = form.cleaned_data['changes']
+    form_wwh = form.cleaned_data['what_why_how']
+    class_model.objects.filter(user_id=user.id).update(
+        text0=form_text0, 
+        text1=form_text1, 
+        text2=form_text2, 
+        text3=form_text3, 
+        text4=form_text4, 
+        changes=form_changes, 
+        what_why_how=form_wwh, 
+        date_time=datetime.datetime.now()
+        )
+
+
 def add_parameter2_what_do_you_do(request): 
     user = User.objects.get(username=request.user)
-    if Parameter2WhatDoYouDo.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter2WhatDoYouDo.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter2WhatDoYouDo(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/what_do_you_do/')
+        if Parameter2WhatDoYouDo.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter2WhatDoYouDo)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/what_do_you_do/')                   
     else:
-        form = AddParameter2WhatDoYouDo()
-    return render(request, 'questions.html', {'form':form})
-
+        if Parameter2WhatDoYouDo.objects.filter(user_id=user.id).exists():
+            model = Parameter2WhatDoYouDo.objects.get(user_id=user.id)
+            form = AddParameter2WhatDoYouDo(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter2WhatDoYouDo()
+            return render(request, 'questions.html', {'form':form})
+            
 
 def add_parameter3_environment(request): 
     user = User.objects.get(username=request.user)
-    if Parameter3Environment.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter3Environment.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter3Environment(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/environment/')
+        if Parameter3Environment.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter3Environment)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/environment/')                   
     else:
-        form = AddParameter3Environment()
-    return render(request, 'questions.html', {'form':form})
+        if Parameter3Environment.objects.filter(user_id=user.id).exists():
+            model = Parameter3Environment.objects.get(user_id=user.id)
+            form = AddParameter3Environment(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter3Environment()
+            return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter4_habits(request): 
     user = User.objects.get(username=request.user)
-    if Parameter4Habits.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter4Habits.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter4Habits(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/habits/')
+        if Parameter4Habits.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter4Habits)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/habits/')                   
     else:
-        form = AddParameter4Habits()
-    return render(request, 'questions.html', {'form':form})
+        if Parameter4Habits.objects.filter(user_id=user.id).exists():
+            model = Parameter4Habits.objects.get(user_id=user.id)
+            form = AddParameter4Habits(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter4Habits()
+            return render(request, 'questions.html', {'form':form})
 
 
 def add_parameter5_free_time(request): 
     user = User.objects.get(username=request.user)
-    if Parameter5FreeTime.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter5FreeTime.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter5FreeTime(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/free_time/')
+        if Parameter5FreeTime.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter5FreeTime)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/free_time/')                   
     else:
-        form = AddParameter5FreeTime()
-    return render(request, 'questions.html', {'form':form})
+        if Parameter5FreeTime.objects.filter(user_id=user.id).exists():
+            model = Parameter5FreeTime.objects.get(user_id=user.id)
+            form = AddParameter5FreeTime(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter5FreeTime()
+            return render(request, 'questions.html', {'form':form})    
 
 
 def add_parameter6_appearance(request): 
     user = User.objects.get(username=request.user)
-    if Parameter6Appearance.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter6Appearance.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter6Appearance(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/appearance/')
+        if Parameter6Appearance.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter6Appearance)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/appearance/')                   
     else:
-        form = AddParameter6Appearance()
-    return render(request, 'questions.html', {'form':form})
+        if Parameter6Appearance.objects.filter(user_id=user.id).exists():
+            model = Parameter6Appearance.objects.get(user_id=user.id)
+            form = AddParameter6Appearance(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter6Appearance()
+            return render(request, 'questions.html', {'form':form})   
 
     
 def add_parameter7_behavior(request): 
     user = User.objects.get(username=request.user)
-    if Parameter7Behavior.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter7Behavior.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter7Behavior(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/behavior/')
+        if Parameter7Behavior.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter7Behavior)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/behavior/')                   
     else:
-        form = AddParameter7Behavior()
-    return render(request, 'questions.html', {'form':form})
+        if Parameter7Behavior.objects.filter(user_id=user.id).exists():
+            model = Parameter7Behavior.objects.get(user_id=user.id)
+            form = AddParameter7Behavior(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter7Behavior()
+            return render(request, 'questions.html', {'form':form})  
 
 
 def add_parameter8_mind(request): 
     user = User.objects.get(username=request.user)
-    if Parameter8Mind.objects.filter(user_id=user.id).exists() and request.method == 'GET':
-        model = Parameter8Mind.objects.get(user_id=user.id)
-        return render(request, 'show.html', {'model':model})
-    
     if request.method == 'POST':
         form = AddParameter8Mind(request.POST)
-        if form.is_valid():
-            taken_info = form.save(commit=False)
-            taken_info.date_time = datetime.datetime.now()
-            taken_info.user = User.objects.get(username=request.user)
-            taken_info.save()         
-            return redirect('/mind/')
+        if Parameter8Mind.objects.filter(user_id=user.id).exists():
+            if form.is_valid():
+                update_model(form, user, Parameter8Mind)
+        else:
+            if form.is_valid():
+                save_taken_info(form, user)         
+        return redirect('/mind/')                   
     else:
-        form = AddParameter8Mind()
-    return render(request, 'questions.html', {'form':form})
+        if Parameter8Mind.objects.filter(user_id=user.id).exists():
+            model = Parameter8Mind.objects.get(user_id=user.id)
+            form = AddParameter8Mind(instance=model)
+            date_time = model.date_time
+            return render(request, 'show.html', {'date_time':date_time, 'form':form})
+        else:
+            form = AddParameter8Mind()
+            return render(request, 'questions.html', {'form':form}) 
 
 
 def error400(request, exception=400):

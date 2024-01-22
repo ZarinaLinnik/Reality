@@ -21,11 +21,6 @@ from django.conf.urls.static import static
 import main.views as main_views
 
 urlpatterns = [
-    path('400/', main_views.error400),
-    path('403/', main_views.error403),
-    path('404/', main_views.error404),
-    path('405/', main_views.error405),
-    path('500/', main_views.error500),
     path('', main_views.start),
     path('admin/', admin.site.urls),
     path('registration/', main_views.registration, name='registration'),
@@ -40,6 +35,11 @@ urlpatterns = [
     path('my_photo/', main_views.my_photo, name='my_photo'),
     path('accounts/profile/', main_views.creature, name='creature'),
     path('feedback/', main_views.feedback, name='feedback'),
+    path('400/', main_views.error400),
+    path('403/', main_views.error403),
+    path('404/', main_views.error404),
+    path('405/', main_views.error405),
+    path('500/', main_views.error500),
 ]
 
 urlpatterns += [
