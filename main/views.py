@@ -2,6 +2,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render, redirect
@@ -9,6 +10,7 @@ from .models import ParameterIMGMyPhoto as MyPhoto, Parameter1WhoAreYou as WhoAr
 from .forms import GiveFeedBack, AddParameterIMGMyPhoto as AddMyPhoto, AddParameter1WhoAreYou as AddWhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6Appearance, AddParameter7Behavior, AddParameter8Mind
 import datetime
 import logging
+import os
 
 
 media_url = settings.MEDIA_URL
@@ -57,9 +59,12 @@ def feedback(request):
 @login_required
 def creature(request): 
     user = User.objects.get(username=request.user)
-    way = MyPhoto.objects.get(user_id=user.id).image
-    logger.log(20, f"\"Way to user's img: {media_url}{way} \"")
-    return render(request, 'creature.html', {'media': media_url, 'way':way})
+    try:
+        image_way = MyPhoto.objects.get(user_id=user.id).image
+    except ObjectDoesNotExist:
+        image_way = None
+    logger.log(20, f"\"Way to user's img: {media_url}{image_way} \"")
+    return render(request, 'creature.html', {'media': media_url, 'image':image_way})
 
 
 @login_required
@@ -68,22 +73,25 @@ def log_out(request):
     return start(request, True)
 
 
+def save_taken_info(form, user):
+    taken_info = form.save(commit=False)
+    taken_info.user = user
+    taken_info.date_time = datetime.datetime.now()
+    taken_info.save()
+
+
 @login_required
 def my_photo(request):
     user = User.objects.get(username=request.user)
     if request.method == 'POST':
         form = AddMyPhoto(request.POST, request.FILES)
         if MyPhoto.objects.filter(user_id=user.id).exists():
+            MyPhoto.objects.filter(user_id=user.id).delete()
             if form.is_valid():
-                form_image = form.cleaned_data['image']
-                form_date_time_pict = form.cleaned_data['date_time_pict']
-                MyPhoto.objects.filter(user_id=user.id).update(image=form_image, date_time=datetime.datetime.now(), date_time_pict=form_date_time_pict)
+                save_taken_info(form, user)
         else:
             if form.is_valid():
-                taken_info = form.save(commit=False)
-                taken_info.user = user
-                taken_info.date_time = datetime.datetime.now()
-                taken_info.save()
+                save_taken_info(form, user)
         return redirect('/my_photo/')                    
     else:
         form = AddMyPhoto()
@@ -110,10 +118,7 @@ def add_parameter1_who_are_you(request):
                 WhoAreYou.objects.filter(user_id=user.id).update(text0=form_text0, changes=form_changes, what_why_how=form_wwh, date_time=datetime.datetime.now(), name=form_name, surname=form_surname, goals=form_goals)
         else:
             if form.is_valid():
-                taken_info = form.save(commit=False)
-                taken_info.date_time = datetime.datetime.now()
-                taken_info.user = user
-                taken_info.save()         
+                save_taken_info(form, user)         
         return redirect('/who_are_you/')                   
     else:
         form = AddWhoAreYou()

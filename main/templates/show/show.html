@@ -1,17 +1,19 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base_show.html' %}
 
-{% block 'links' %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/form.css' %}">{% endblock %}
-
-{% block 'content' %}
-    <h1>{{ model.text0.label }}</h1>
-    <p>{{ model.text0 }}</p>
+{% block 'questions' %}
+    <h1>{{ form.text1.label }}</h1>
     <p>{{ model.text1 }}</p>
+    <p>{{ form.text1 }}</p>
+
+    <h1>{{ form.text2.label }}</h1>
     <p>{{ model.text2 }}</p>
+    <p>{{ form.text2 }}</p>
+
+    <h1>{{ form.text3.label }}</h1>
     <p>{{ model.text3 }}</p>
+    <p>{{ form.text3 }}</p>
+
+    <h1>{{ form.text4.label }}</h1>
     <p>{{ model.text4 }}</p>
-    <p>{{ model.changes }}</p>
-    <p>{{ model.what_why_how }}</p>
-    <hr>
-    <p>{{ model.date_time }}</p>
+    <p>{{ form.text4 }}</p>
 {% endblock %}

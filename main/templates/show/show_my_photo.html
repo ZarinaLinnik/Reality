@@ -13,17 +13,25 @@
 {% endblock %}
 
 {% block 'content' %}
-<form method="post">
+<h1>Your image</h1>
+<img src="{{ media }}{{ model.image }}">
+<h1>Date&Time<br>when your image was created.</h1>
+<p>{{ model.date_time_pict }}</p>
+<p>The latest update: {{ model.date_time }}</p>
+
+<hr>
+
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <h1>You can change your image and date&time here.</h1>
+
+    <br>
+    
     <h1>Image</h1>
-    <img src="{{ media }}{{ model.image }}">
     <p>{{ form.image }}</p>
 
     <h1>Date&Time<br>when your image was created.<br>Pattern: 2024-01-07 20:19:11.00</h1>
-    <p>{{ model.date_time_pict }}</p>
     <p>{{ form.date_time_pict }}</p>
-
-    <p>{{ model.date_time }}</p>
 
     <div>
         <input type="submit" value="Save my info">
