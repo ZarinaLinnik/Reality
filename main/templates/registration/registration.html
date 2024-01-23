@@ -7,7 +7,7 @@
     <form action="{% url 'registration' %}" method="POST">
         {% csrf_token %}
         {% if special_text %}
-            <li>If you see that then<br>A user with that username already exists.<br>OR<br>Read the conditions below again and write the correct answers</li>
+            <li>If you see that then<br>A user with that username already exists.<br>OR<br>Read the conditions below again and fill the fields in correctly.</li>
         {% endif %}
         <h1>{{ form.username.label }}</h1>
         <p>{{ form.username }}</p>

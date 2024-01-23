@@ -25,6 +25,7 @@ class AddParameterIMGMyPhoto(forms.ModelForm):
     class Meta:
         model = ParameterIMGMyPhoto
         fields = ('image', 'date_time_pict',)
+        widgets = {'date_time_pict':forms.DateTimeInput(format='%m/%d/%Y %H:%M')}
 
 
 class AddParameter1WhoAreYou(forms.ModelForm):

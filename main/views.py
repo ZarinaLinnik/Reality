@@ -86,20 +86,21 @@ def my_photo(request):
     if request.method == 'POST':
         form = AddMyPhoto(request.POST, request.FILES)
         if MyPhoto.objects.filter(user_id=user.id).exists():
-            MyPhoto.objects.filter(user_id=user.id).delete()
             if form.is_valid():
+                past_image = str(MyPhoto.objects.get(user_id=user.id).image)
+                os.remove(os.path.join('media', past_image))
+                MyPhoto.objects.filter(user_id=user.id).delete()
                 save_taken_info(form, user)
         else:
             if form.is_valid():
                 save_taken_info(form, user)
         return redirect('/my_photo/')                    
     else:
+        form = AddMyPhoto()
         if MyPhoto.objects.filter(user_id=user.id).exists():
             model = MyPhoto.objects.get(user_id=user.id)
-            form = AddMyPhoto(instance=model)
             return render(request, 'show_my_photo.html', {'model':model, 'media':media_url, 'form':form})
         else:
-            form = AddMyPhoto()
             return render(request, 'my_photo.html', {'form': form})
 
 
