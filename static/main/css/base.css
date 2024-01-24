@@ -18,7 +18,7 @@ header {
     width: 100%;
     background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
 }
-header > div {
+header div {
     margin: 20px 40px;
     font-size: 54px;
     background-color:aliceblue;
@@ -27,7 +27,7 @@ header > div {
     text-align: center;
     border-radius: 35%;
 }
-header > div a {
+header div a {
     color: rgb(59, 59, 183);
     font-size: 30px;
     text-decoration: none;
@@ -37,6 +37,7 @@ header > div a {
 }
 .dropbtn:hover .dropdown_content{
     display: block;
+    position: absolute;
 }
 .liner{
     height: 115px;
@@ -53,7 +54,7 @@ header > div a {
     border-radius: 35%; 
     padding: 5px 10px;
 }
-#logout_form {display: none}
+/* #logout_form {display: none} */
 h1, p {
     text-align: center;
     text-indent: 20px;

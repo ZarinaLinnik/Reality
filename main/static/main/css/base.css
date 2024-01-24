@@ -18,7 +18,7 @@ header {
     width: 100%;
     background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
 }
-header > div {
+header div, div.extra {
     margin: 20px 40px;
     font-size: 54px;
     background-color:aliceblue;
@@ -27,17 +27,35 @@ header > div {
     text-align: center;
     border-radius: 35%;
 }
-header > div a {
+header div a, div.extra span {
     color: rgb(59, 59, 183);
     font-size: 30px;
     text-decoration: none;
 }
-/* .dropdown_content {
+div.extra div {
+    margin: 0;
+}
+div.delete {
+    height: 77px;
+    width: 132px;
+    background-color: black;
+}
+#delete_account {
+    color: white;
+    border: 5px solid; 
+    border-radius: 35%; 
+    padding: 5px 10px;
+}
+div.content1 {
+    margin-top: 10px; 
+    border: 3px solid var(--blue);}
+.dropdown_content {
     display: none;
 }
-.dropbtn:hover .dropdown_content{
+.extra:hover .dropdown_content{
     display: block;
-} */
+    position: absolute;
+}
 .liner{
     height: 115px;
     background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
@@ -47,16 +65,9 @@ header > div a {
     border-radius: 35%; 
     padding: 5px 10px;
 }
-/* #delete_account {
-    color: white;
-    border: 5px solid black; 
-    border-radius: 35%; 
-    padding: 5px 10px;
-} */
 #logout_form {display: none}
 h1, p {
     text-align: center;
-    text-indent: 20px;
 }
 h1 {
     color: rgb(30, 117, 211);

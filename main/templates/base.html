@@ -16,13 +16,13 @@
         {% if user.is_authenticated %}
             <div><a href="{% url 'feedback' %}" class="feedback">Feedback</a></div>
             <div><a href="{% url 'creature' %}" class="you">YOU</a></div>
-            <!-- <div class="dropdown">
-                <a onclick="dropdown()" class="dropbtn">+Extra</a>
-                <div id="id_dropdown" class="dropdown_content">
-                    <div><a href="{% url 'logout' %}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">Log out</a></div>
-                    <div><a href="{% url 'delete_account' %}" id="delete_account">Delete</a></div>
+            <div class="extra">
+                <span>+Extra</span>
+                <div class="dropdown_content">
+                    <div class="content1"><a href="{% url 'logout' %}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">Log out</a></div>
+                    <div class="delete"><a href="{% url 'delete_account' %}" id="delete_account">Delete</a></div>
                 </div>
-            </div> -->
+            </div>
             <form action="{% url 'logout' %}" method="post" id="logout_form">
                 {% csrf_token %}
             </form>
