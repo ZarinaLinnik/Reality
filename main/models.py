@@ -1,7 +1,5 @@
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
 from django.db import models
-import re
 
 
 class BaseModel(models.Model):
@@ -22,7 +20,7 @@ class ParameterIMGMyPhoto(models.Model):
         verbose_name_plural = 'MyPhoto'
 
     image = models.ImageField(upload_to='uploaded')
-    date_time_pict = models.DateTimeField(default='02/20/2005 17:25')
+    date_time_pict = models.DateTimeField(max_length=16, null=True)
     date_time = models.DateTimeField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 

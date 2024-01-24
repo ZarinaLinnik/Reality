@@ -9,12 +9,15 @@
         width: 44vw;
         border-radius: 35%;
     }
+    label#img_name {
+        padding-left: 0px;
+    }
 </style>
 {% endblock %}
 
 {% block 'content' %}
-<h1>Your image</h1>
-<img src="{{ media }}{{ model.image }}">
+<h1><label for="id_image" id="img_name">Your image</label></h1>
+<img src="{{ media }}{{ model.image }}" title="This is your photo." alt="That was your photo.">
 <h1>Date&Time<br>when your image was created.</h1>
 <p>{{ model.date_time_pict }}</p>
 <p>The latest update: {{ model.date_time }}</p>
@@ -30,8 +33,8 @@
     <h1>Image</h1>
     <p>{{ form.image }}</p>
 
-    <h1>Date&Time<br>when your image was created.<br>Pattern: 10/25/2006 14:30</h1>
-    <p>{{ form.date_time_pict }}</p>
+    <h1>Date&Time<br>when your image was created.<br>Pattern:<br>10/25/2006 14:30<br>MM/DD/YYYY HH:MM</h1>
+    <p class="date_time_pict">{{ form.date_time_pict }}</p>
 
     <div>
         <input type="submit" value="Save my info">

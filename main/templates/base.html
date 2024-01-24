@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>&real;eality</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'main/img/favicon.ico' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/base.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'main/img/favicon.ico' %}" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/base.css' %}" charset="utf-8">
     {% block 'links' %}{% endblock %}
     {% block 'style' %}{% endblock %}
 </head>
@@ -16,12 +16,14 @@
         {% if user.is_authenticated %}
             <div><a href="{% url 'feedback' %}" class="feedback">Feedback</a></div>
             <div><a href="{% url 'creature' %}" class="you">YOU</a></div>
-            <div>
-                <a href="{% url 'logout' %}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
-                    Log out
-                </a>
-            </div>
-            <form action="{% url 'logout' %}" method="post" id="logout_form" style="display: none;">
+            <!-- <div class="dropdown">
+                <a onclick="dropdown()" class="dropbtn">+Extra</a>
+                <div id="id_dropdown" class="dropdown_content">
+                    <div><a href="{% url 'logout' %}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">Log out</a></div>
+                    <div><a href="{% url 'delete_account' %}" id="delete_account">Delete</a></div>
+                </div>
+            </div> -->
+            <form action="{% url 'logout' %}" method="post" id="logout_form">
                 {% csrf_token %}
             </form>
         {% endif %}
@@ -29,6 +31,6 @@
     <div class="liner"></div>
     {% block 'content' %}
     {% endblock %}
-    <script type="application/javascript" src="{% static 'main/js/base.js' %}"></script>
+    <script type="application/javascript" src="{% static 'main/js/base.js' %}" charset="utf-8"></script>
 </body>
 </html>

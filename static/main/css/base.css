@@ -32,23 +32,38 @@ header > div a {
     font-size: 30px;
     text-decoration: none;
 }
+.dropdown_content {
+    display: none;
+}
+.dropbtn:hover .dropdown_content{
+    display: block;
+}
 .liner{
     height: 115px;
     background-image: linear-gradient(to right, var(--blue), rgb(168, 199, 244), var(--gray-metal), rgb(242, 242, 242));
 }
+.you {
+    border: 3px solid; 
+    border-radius: 35%; 
+    padding: 5px 10px;
+}
+#delete_account {
+    color: white;
+    border: 5px solid black; 
+    border-radius: 35%; 
+    padding: 5px 10px;
+}
+#logout_form {display: none}
+h1, p {
+    text-align: center;
+    text-indent: 20px;
+}
 h1 {
     color: rgb(30, 117, 211);
-    text-indent: 20px;
     font-size: 30px;
 }
 p {
-    text-indent: 20px;
     font-size: 20px;
-}
-.you {
-    border: solid 3px; 
-    border-radius: 35%; 
-    padding: 5px 10px;
 }
 
 @media only screen and (max-width:400px) {

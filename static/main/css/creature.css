@@ -6,7 +6,7 @@ a {
 .heart {
     color: blue;
 }
-img, picture > source {
+img {
     border-radius: 40%;
     width: 23vw;
 }

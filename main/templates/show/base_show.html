@@ -6,7 +6,6 @@
 {% block 'content' %}
 <form method="post">
     {% csrf_token %}
-    <h1 style="text-decoration: underline;">Copy your text, paste in the gaps and edit!<br>Or you will get lost your data.</h1>
     <h1>{{ form.text0.label }}</h1>
     <p>{{ form.text0 }}</p>
 

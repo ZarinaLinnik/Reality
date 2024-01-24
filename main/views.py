@@ -63,7 +63,6 @@ def creature(request):
         image_way = MyPhoto.objects.get(user_id=user.id).image
     except ObjectDoesNotExist:
         image_way = None
-    logger.log(20, f"\"Way to user's img: {media_url}{image_way} \"")
     return render(request, 'creature.html', {'media': media_url, 'image':image_way})
 
 
@@ -71,6 +70,12 @@ def creature(request):
 def log_out(request):
     logout(request)
     return start(request, True)
+
+
+@login_required
+def delete_account(request):
+    User.objects.filter(username=request.user).delete()
+    return redirect('start')
 
 
 def save_taken_info(form, user):
@@ -88,7 +93,10 @@ def my_photo(request):
         if MyPhoto.objects.filter(user_id=user.id).exists():
             if form.is_valid():
                 past_image = str(MyPhoto.objects.get(user_id=user.id).image)
-                os.remove(os.path.join('media', past_image))
+                try:
+                    os.remove(os.path.join('media', past_image))
+                except FileNotFoundError:
+                    logger.debug(f"Not found this img way: {os.path.join('media', past_image)}")
                 MyPhoto.objects.filter(user_id=user.id).delete()
                 save_taken_info(form, user)
         else:
