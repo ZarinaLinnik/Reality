@@ -7,11 +7,14 @@
     <form action="{% url 'registration' %}" method="POST">
         {% csrf_token %}
         {% if special_text %}
-            <li>If you see that then<br>A user with that username already exists.<br>OR<br>Read the conditions below again and fill the fields in correctly.</li>
+            <li>SEE SPECIAL HELP TEXT BELOW TO FIX YOUR PROBLEMS</li>
         {% endif %}
+
         <h1>{{ form.username.label }}</h1>
         <p>{{ form.username }}</p>
-        <p>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+        <p>{{ form.username.help_text }}</p>
+        {{ form.username.errors }}
+        
         <h1>{{ form.password1.label }}</h1>
         <p>{{ form.password1 }}</p>
         <p>
@@ -20,9 +23,12 @@
             Your password can't be a commonly used password.<br>
             Your password can't be entirely numeric.
         </p>
+
         <h1>{{ form.password2.label }}</h1>
         <p>{{ form.password2 }}</p>
-        <p>Enter the same password as before, for verification.</p>
+        <p>{{ form.password2.help_text }}</p>
+        {{ form.password2.errors }}
+
         <div><button type="submit">Register</button></div>
     </form>
 {% endblock %}
