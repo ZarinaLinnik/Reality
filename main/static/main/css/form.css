@@ -6,10 +6,10 @@ form {
     display: flex;
     flex-direction: column;
 }
+ul.errorlist {padding: 0;}
 li {
     display: block;
     font-size: 25px;
-    padding-left: 20px;
     color: brown;
 }
 label {

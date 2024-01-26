@@ -1,8 +1,11 @@
 {% extends 'base_form.html' %} 
     
 {% block 'questions' %}
+
     <h1>Image</h1>
     <p>{{ form.image }}</p>
     <h1>Date&Time<br>when your image was created.<br>Pattern: 10/25/2006 14:30</h1>
     <p class="date_time_pict">{{ form.date_time_pict }}</p>
+    {{ form.date_time_pict.errors }}
+
 {% endblock %}

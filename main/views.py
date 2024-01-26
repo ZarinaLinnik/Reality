@@ -99,10 +99,15 @@ def my_photo(request):
                     logger.debug(f"Not found this img way: {os.path.join('media', past_image)}")
                 MyPhoto.objects.filter(user_id=user.id).delete()
                 save_taken_info(form, user)
+            else:
+                return render(request, 'my_photo.html', {'form': form})
         else:
             if form.is_valid():
                 save_taken_info(form, user)
-        return redirect('/my_photo/')                    
+            else:
+                return render(request, 'my_photo.html', {'form': form})
+        return redirect('/my_photo/')    
+                    
     else:
         form = AddMyPhoto()
         if MyPhoto.objects.filter(user_id=user.id).exists():

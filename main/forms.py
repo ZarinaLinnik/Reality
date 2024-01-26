@@ -25,12 +25,13 @@ class AddParameterIMGMyPhoto(forms.ModelForm):
     class Meta:
         model = ParameterIMGMyPhoto
         fields = ('image', 'date_time_pict',)
+        errors = {'date_time_pict':'Input the correct date&time'}
         widgets = {
             'date_time_pict':forms.DateTimeInput(
                 {
                     'pattern':r'^\d{2}/\d{2}/\d{4} \d{2}:\d{2}$', 
                     'title': 'Pattern: MM/DD/YYYY HH:MM',
-                    'placeholder':'02/20/2005 17:25',
+                    'placeholder':'__/__/____ __:__',
                     'maxlength':'16',
                 }, 
                 format='%m/%d/%Y %H:%M'),

@@ -20,7 +20,7 @@ class ParameterIMGMyPhoto(models.Model):
         verbose_name_plural = 'MyPhoto'
 
     image = models.ImageField(upload_to='uploaded')
-    date_time_pict = models.DateTimeField(max_length=16, null=True)
+    date_time_pict = models.DateTimeField(max_length=16)
     date_time = models.DateTimeField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
