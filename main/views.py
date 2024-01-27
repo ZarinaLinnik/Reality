@@ -74,6 +74,8 @@ def log_out(request):
 
 @login_required
 def delete_account(request):
+    user = User.objects.get(username=request.user)
+    delete_photo(user)
     User.objects.filter(username=request.user).delete()
     return redirect('start')
 
@@ -85,6 +87,14 @@ def save_taken_info(form, user):
     taken_info.save()
 
 
+def delete_photo(user):
+    past_image = str(MyPhoto.objects.get(user_id=user.id).image)
+    try:
+        os.remove(os.path.join('media', past_image))
+    except FileNotFoundError:
+        logger.debug(f"Not found this img way: {os.path.join('media', past_image)}")
+
+
 @login_required
 def my_photo(request):
     user = User.objects.get(username=request.user)
@@ -92,11 +102,7 @@ def my_photo(request):
         form = AddMyPhoto(request.POST, request.FILES)
         if MyPhoto.objects.filter(user_id=user.id).exists():
             if form.is_valid():
-                past_image = str(MyPhoto.objects.get(user_id=user.id).image)
-                try:
-                    os.remove(os.path.join('media', past_image))
-                except FileNotFoundError:
-                    logger.debug(f"Not found this img way: {os.path.join('media', past_image)}")
+                delete_photo(user)
                 MyPhoto.objects.filter(user_id=user.id).delete()
                 save_taken_info(form, user)
             else:
