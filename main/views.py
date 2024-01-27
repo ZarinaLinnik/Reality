@@ -231,22 +231,26 @@ def add_parameter8_mind(request):
     any_parameter(request, AddParameter8Mind, Parameter8Mind, '/mind/')
 
 
+def any_error(request, exception, name):
+        return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+
+
 def error400(request, exception=400):
     name = "Bad Request"
-    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+    any_error(request, exception, name)
 
 def error403(request, exception=403):
     name = "Forbidden"
-    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+    any_error(request, exception, name)
 
 def error404(request, exception=404):
     name = "Page Not Found"
-    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+    any_error(request, exception, name)
 
 def error405(request, exception=405):
     name = "Method Not Allowed"
-    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+    any_error(request, exception, name)
 
 def error500(request, exception=500):
     name = "Internal Server Error"
-    return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
+    any_error(request, exception, name)
