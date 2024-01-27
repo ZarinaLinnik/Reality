@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
+from .models import (
+    ParameterIMGMyPhoto, 
+    Parameter1WhoAreYou, 
+    Parameter2WhatDoYouDo, 
+    Parameter3Environment, 
+    Parameter4Habits, 
+    Parameter5FreeTime, 
+    Parameter6Appearance, 
+    Parameter7Behavior, 
+    Parameter8Mind
+    )
 
 '''Register your models here.'''
 

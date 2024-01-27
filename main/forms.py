@@ -1,5 +1,15 @@
 from django import forms
-from .models import ParameterIMGMyPhoto, Parameter1WhoAreYou, Parameter2WhatDoYouDo, Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
+from .models import (
+    ParameterIMGMyPhoto, 
+    Parameter1WhoAreYou, 
+    Parameter2WhatDoYouDo, 
+    Parameter3Environment, 
+    Parameter4Habits, 
+    Parameter5FreeTime, 
+    Parameter6Appearance, 
+    Parameter7Behavior, 
+    Parameter8Mind
+    )
 
 '''
     class Meta:
@@ -43,7 +53,7 @@ class AddParameter1WhoAreYou(forms.ModelForm):
     class Meta:
         model = Parameter1WhoAreYou
         fields = ('text0', 'name', 'surname', 'goals', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'Who are you? What do you want from this life and from you?',
             'name':'What is your name?',
@@ -59,7 +69,7 @@ class AddParameter2WhatDoYouDo(forms.ModelForm):
     class Meta:
         model = Parameter2WhatDoYouDo
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'What do you do every week? (work, study, housework)',
             'text1':'How do you prioritize and manage your tasks?',
@@ -76,7 +86,7 @@ class AddParameter3Environment(forms.ModelForm):
     class Meta:
         model = Parameter3Environment
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'What does your room or environment look like?',
             'text1':'What is the overall atmosphere or vibe of your room?',
@@ -93,7 +103,7 @@ class AddParameter4Habits(forms.ModelForm):
     class Meta:
         model = Parameter4Habits
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'What are your habits?',
             'text1':'Are there any habits that you find particularly beneficial or important?',
@@ -110,7 +120,7 @@ class AddParameter5FreeTime(forms.ModelForm):
     class Meta:
         model = Parameter5FreeTime
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'How do you spend your free time?',
             'text1':'What activities or hobbies do you enjoy during your leisure hours?',
@@ -127,7 +137,7 @@ class AddParameter6Appearance(forms.ModelForm):
     class Meta:
         model = Parameter6Appearance
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'What do you look like?',
             'text1':'What physical features do you find unique or distinctive about yourself?',
@@ -144,7 +154,7 @@ class AddParameter7Behavior(forms.ModelForm):
     class Meta:
         model = Parameter7Behavior
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'What is your behavior like?',
             'text1':'Are you generally extroverted, introverted, or somewhere in between?',
@@ -161,7 +171,7 @@ class AddParameter8Mind(forms.ModelForm):
     class Meta:
         model = Parameter8Mind
         fields = ('text0', 'text1', 'text2', 'text3', 'text4', 'changes', 'what_why_how')
-        exlude = ('date_time', 'user')
+        exclude = ('date_time', 'user')
         labels = {
             'text0':'How do you think?',
             'text1':'Are you more analytical or intuitive in your thinking process?',

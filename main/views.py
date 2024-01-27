@@ -1,14 +1,35 @@
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
-from django.conf import settings
 from django.shortcuts import render, redirect
-from .models import ParameterIMGMyPhoto as MyPhoto, Parameter1WhoAreYou as WhoAreYou, Parameter2WhatDoYouDo , Parameter3Environment, Parameter4Habits, Parameter5FreeTime, Parameter6Appearance, Parameter7Behavior, Parameter8Mind
-from .forms import GiveFeedBack, AddParameterIMGMyPhoto as AddMyPhoto, AddParameter1WhoAreYou as AddWhoAreYou, AddParameter2WhatDoYouDo, AddParameter3Environment, AddParameter4Habits, AddParameter5FreeTime, AddParameter6Appearance, AddParameter7Behavior, AddParameter8Mind
-import datetime
+from .models import (
+    ParameterIMGMyPhoto as MyPhoto, 
+    Parameter1WhoAreYou as WhoAreYou, 
+    Parameter2WhatDoYouDo, 
+    Parameter3Environment, 
+    Parameter4Habits, 
+    Parameter5FreeTime, 
+    Parameter6Appearance, 
+    Parameter7Behavior, 
+    Parameter8Mind
+    )
+from .forms import (
+    GiveFeedBack, 
+    AddParameterIMGMyPhoto as AddMyPhoto, 
+    AddParameter1WhoAreYou as AddWhoAreYou, 
+    AddParameter2WhatDoYouDo, 
+    AddParameter3Environment, 
+    AddParameter4Habits, 
+    AddParameter5FreeTime, 
+    AddParameter6Appearance, 
+    AddParameter7Behavior, 
+    AddParameter8Mind
+    )
+from datetime import datetime
 import logging
 import os
 
@@ -83,7 +104,7 @@ def delete_account(request):
 def save_taken_info(form, user):
     taken_info = form.save(commit=False)
     taken_info.user = user
-    taken_info.date_time = datetime.datetime.now()
+    taken_info.date_time = datetime.now()
     taken_info.save()
 
 
@@ -95,6 +116,7 @@ def delete_photo(user):
         pass
     except FileNotFoundError:
         logger.debug(f"Not found this img way: {os.path.join('media', past_image)}")
+
 
 @login_required
 def my_photo(request):
@@ -141,7 +163,7 @@ def add_parameter1_who_are_you(request):
                     text0=form_text0, 
                     changes=form_changes, 
                     what_why_how=form_wwh, 
-                    date_time=datetime.datetime.now(), 
+                    date_time=datetime.now(), 
                     name=form_name, 
                     surname=form_surname, 
                     goals=form_goals
@@ -177,7 +199,7 @@ def update_model(form, user, class_model):
         text4=form_text4, 
         changes=form_changes, 
         what_why_how=form_wwh, 
-        date_time=datetime.datetime.now()
+        date_time=datetime.now()
         )
     
 
@@ -229,28 +251,3 @@ def add_parameter7_behavior(request):
 
 def add_parameter8_mind(request): 
     any_parameter(request, AddParameter8Mind, Parameter8Mind, '/mind/')
-
-
-def any_error(request, exception, name):
-        return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
-
-
-def error400(request, exception=400):
-    name = "Bad Request"
-    any_error(request, exception, name)
-
-def error403(request, exception=403):
-    name = "Forbidden"
-    any_error(request, exception, name)
-
-def error404(request, exception=404):
-    name = "Page Not Found"
-    any_error(request, exception, name)
-
-def error405(request, exception=405):
-    name = "Method Not Allowed"
-    any_error(request, exception, name)
-
-def error500(request, exception=500):
-    name = "Internal Server Error"
-    any_error(request, exception, name)

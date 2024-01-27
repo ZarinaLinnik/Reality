@@ -3,6 +3,9 @@ from django.db import models
 
 
 class BaseModel(models.Model):
+    """
+    Base model for other models.
+    """
 
     class Meta:
         abstract = True
@@ -15,6 +18,9 @@ class BaseModel(models.Model):
 
 
 class TextModel(BaseModel):
+    """
+    Base model with text fields.
+    """
 
     class Meta:
         abstract = True

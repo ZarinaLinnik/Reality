@@ -15,44 +15,45 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path, include
 import main.views as main_views
+import main.errors as main_errors
 
 urlpatterns = [
-    path('', main_views.start, name='start'),
-    path('admin/', admin.site.urls),
-    path('registration/', main_views.registration, name='registration'),
-    path('who_are_you/', main_views.add_parameter1_who_are_you, name='who_are_you'),
-    path('what_do_you_do/', main_views.add_parameter2_what_do_you_do, name='what_do_you_do'),
-    path('environment/', main_views.add_parameter3_environment, name='environment'),
-    path('habits/', main_views.add_parameter4_habits, name='habits'),
-    path('free_time/', main_views.add_parameter5_free_time, name='free_time'),
-    path('appearance/', main_views.add_parameter6_appearance, name='appearance'),
-    path('behavior/', main_views.add_parameter7_behavior, name='behavior'),
-    path('mind/', main_views.add_parameter8_mind, name='mind'),
-    path('my_photo/', main_views.my_photo, name='my_photo'),
-    path('accounts/profile/', main_views.creature, name='creature'),
-    path('feedback/', main_views.feedback, name='feedback'),
-    path('delete_account/', main_views.delete_account, name='delete_account'),
-    path('400/', main_views.error400),
-    path('403/', main_views.error403),
-    path('404/', main_views.error404),
-    path('405/', main_views.error405),
-    path('500/', main_views.error500),
+    path('', main_views.start, name='start'),  # Start page
+    path('admin/', admin.site.urls),  # Administrative panel
+    path('registration/', main_views.registration, name='registration'),  # User registration
+    path('who_are_you/', main_views.add_parameter1_who_are_you, name='who_are_you'), # Parameter 1 Who Are You
+    path('what_do_you_do/', main_views.add_parameter2_what_do_you_do, name='what_do_you_do'),  # Parameter 2 What Do You Do
+    path('environment/', main_views.add_parameter3_environment, name='environment'),  # Parameter 3 Environment
+    path('habits/', main_views.add_parameter4_habits, name='habits'),  # Parameter 4 Habits
+    path('free_time/', main_views.add_parameter5_free_time, name='free_time'),  # Parameter 5 Free Time
+    path('appearance/', main_views.add_parameter6_appearance, name='appearance'),  # Parameter 6 Appearance
+    path('behavior/', main_views.add_parameter7_behavior, name='behavior'),  # Parameter 7 Behavior
+    path('mind/', main_views.add_parameter8_mind, name='mind'),  # Parameter 8 Mind
+    path('my_photo/', main_views.my_photo, name='my_photo'),  # Page with user's photo and its date&time
+    path('accounts/profile/', main_views.creature, name='creature'),  # Main account page
+    path('feedback/', main_views.feedback, name='feedback'),  # User can leave feedback
+    path('delete_account/', main_views.delete_account, name='delete_account'),  # User delete user's account
+    path('400/', main_errors.error400),  # Error 400
+    path('403/', main_errors.error403),  # Error 403
+    path('404/', main_errors.error404),  # Error 404
+    path('405/', main_errors.error405),  # Error 405
+    path('500/', main_errors.error500),  # Error 500
 ]
 
 urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls'), name='authorization'),
-    path('logout/', main_views.log_out, name='logout'), 
+    path('accounts/', include('django.contrib.auth.urls'), name='authorization'),  # include django paths
+    path('logout/', main_views.log_out, name='logout'),  # Log out possibility
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Connection static path
 
-handler400 = 'main.views.error400'
-handler403 = 'main.views.error403'
-handler404 = 'main.views.error404'
-handler405 = 'main.views.error405'
-handler500 = 'main.views.error500'
+handler400 = 'main.errors.error400'  # 400 error handler
+handler403 = 'main.errors.error403'  # 403 error handler
+handler404 = 'main.errors.error404'  # 404 error handler
+handler405 = 'main.errors.error405'  # 405 error handler
+handler500 = 'main.errors.error500'  # 500 error handler
