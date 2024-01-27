@@ -14,6 +14,17 @@ class BaseModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
+class TextModel(BaseModel):
+
+    class Meta:
+        abstract = True
+
+    text1 = models.TextField(blank=True)
+    text2 = models.TextField(blank=True)
+    text3 = models.TextField(blank=True)
+    text4 = models.TextField(blank=True)
+
+
 class ParameterIMGMyPhoto(models.Model):
 
     class Meta:
@@ -35,78 +46,43 @@ class Parameter1WhoAreYou(BaseModel):
     goals = models.TextField(blank=True)
 
 
-class Parameter2WhatDoYouDo(BaseModel): 
+class Parameter2WhatDoYouDo(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter2WhatDoYouDo'
 
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
 
-
-class Parameter3Environment(BaseModel): 
+class Parameter3Environment(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter3Environment'
 
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
 
-
-class Parameter4Habits(BaseModel): 
+class Parameter4Habits(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter4Habits'
 
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
 
-
-class Parameter5FreeTime(BaseModel): 
+class Parameter5FreeTime(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter5FreeTime'
 
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
 
-
-class Parameter6Appearance(BaseModel): 
+class Parameter6Appearance(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter6Appearance'
 
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
 
-
-class Parameter7Behavior(BaseModel): 
+class Parameter7Behavior(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter7Behavior'
 
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
 
-
-class Parameter8Mind(BaseModel): 
+class Parameter8Mind(TextModel): 
 
     class Meta:
         verbose_name_plural = 'Parameter8Mind'
-
-    text1 = models.TextField(blank=True)
-    text2 = models.TextField(blank=True)
-    text3 = models.TextField(blank=True)
-    text4 = models.TextField(blank=True)
