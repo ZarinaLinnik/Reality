@@ -32,6 +32,9 @@ class TextModel(BaseModel):
 
 
 class ParameterIMGMyPhoto(models.Model):
+    """
+    Model for user's photo and its date&time.
+    """
 
     class Meta:
         verbose_name_plural = 'MyPhoto'

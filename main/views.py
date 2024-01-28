@@ -226,28 +226,28 @@ def any_parameter(request, any_form, any_model, redirect_way: str):
 
 
 def add_parameter2_what_do_you_do(request): 
-    any_parameter(request, AddParameter2WhatDoYouDo, Parameter2WhatDoYouDo, '/what_do_you_do/')
+    return any_parameter(request, AddParameter2WhatDoYouDo, Parameter2WhatDoYouDo, '/what_do_you_do/')
             
 
 def add_parameter3_environment(request): 
-    any_parameter(request, AddParameter3Environment, Parameter3Environment, '/environment/')
+    return any_parameter(request, AddParameter3Environment, Parameter3Environment, '/environment/')
   
 
 def add_parameter4_habits(request): 
-    any_parameter(request, AddParameter4Habits, Parameter4Habits, '/habits/')
+    return any_parameter(request, AddParameter4Habits, Parameter4Habits, '/habits/')
 
 
 def add_parameter5_free_time(request): 
-    any_parameter(request, AddParameter5FreeTime, Parameter5FreeTime, '/free_time/')
+    return any_parameter(request, AddParameter5FreeTime, Parameter5FreeTime, '/free_time/')
 
 
 def add_parameter6_appearance(request): 
-    any_parameter(request, AddParameter6Appearance, Parameter6Appearance, '/appearance/')
+    return any_parameter(request, AddParameter6Appearance, Parameter6Appearance, '/appearance/')
 
     
 def add_parameter7_behavior(request): 
-    any_parameter(request, AddParameter7Behavior, Parameter7Behavior, '/behavior/')
+    return any_parameter(request, AddParameter7Behavior, Parameter7Behavior, '/behavior/')
 
 
 def add_parameter8_mind(request): 
-    any_parameter(request, AddParameter8Mind, Parameter8Mind, '/mind/')
+    return any_parameter(request, AddParameter8Mind, Parameter8Mind, '/mind/')
