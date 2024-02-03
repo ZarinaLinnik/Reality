@@ -56,7 +56,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'main_formatter': {
-            'format': "{asctime} - {levelname} {levelno}; Module: {module} - Filename:{filename} - FuncName:{funcName} - №line:{lineno}; Message:{message} - {pathname} - {processName}",
+            'format': "{asctime} - {levelname} {levelno};\nModule: {module} - Filename: {filename} - FuncName: {funcName} - №line: {lineno};\nMessage: {message} - {pathname} - {processName}\n",
             'style': "{",
         }
     },

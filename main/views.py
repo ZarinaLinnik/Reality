@@ -113,9 +113,9 @@ def delete_photo(user):
         past_image = str(MyPhoto.objects.get(user_id=user.id).image)
         os.remove(os.path.join('media', past_image))
     except ObjectDoesNotExist:
-        pass
+        logger.warning(f"Not found user's photo where user's id is {user.id}")
     except FileNotFoundError:
-        logger.debug(f"Not found this img way: {os.path.join('media', past_image)}")
+        logger.warning(f"The file wasn't found in this way: {os.path.join('media', past_image)}")
 
 
 @login_required

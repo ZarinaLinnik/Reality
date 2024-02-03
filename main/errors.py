@@ -8,12 +8,19 @@ PS.
 
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
+import logging
+import requests
+
+
+logger = logging.getLogger('main')
 
 
 def any_error(request: HttpRequest, exception, name: str) -> HttpResponse:
     """
     A generic function to display an error information page.
     """
+    if request.get_full_path() != f"/{exception.numerator}/":
+        logger.error(f'{exception.numerator}. {name}. The url is {request.get_full_path()}')
     return render(request, 'error.html', {'error_number': exception.numerator, 'error_name': name}, status=exception.numerator)
 
 

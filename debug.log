@@ -33,4 +33,37 @@
 2024-01-22 20:59:41,968 - INFO 20; Module: views - Filename:views.py - FuncName:creature - №line:66; Message:"Way to user's img: /media/uploaded/photo_no9TMPV.jpg " - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\views.py - MainProcess
 2024-01-22 21:04:47,050 - INFO 20; Module: views - Filename:views.py - FuncName:add_parameter7_behavior - №line:258; Message:Parameter7Behavior object (2) - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\views.py - MainProcess
 2024-01-22 21:16:47,570 - INFO 20; Module: views - Filename:views.py - FuncName:creature - №line:66; Message:"Way to user's img: /media/uploaded/photo_no9TMPV.jpg " - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\views.py - MainProcess
-2024-01-24 12:40:07,392 - DEBUG 10; Module: views - Filename:views.py - FuncName:my_photo - №line:93; Message:Not found this img way: media\uploaded/human_6eA97Rt.png - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\views.py - MainProcess
+2024-01-24 12:40:07,392 - DEBUG 10; Module: views - Filename:views.py - FuncName:my_photo - №line:93; Message:Not found this img way: media\uploaded/human_6eA97Rt.png - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\views.py - MainProcess2024-02-03 21:54:55,732 - ERROR 40; Module: errors - Filename:errors.py - FuncName:any_error - №line:21; Message:500. Internal Server Error. HTTP_REFERER is /accounts/profile/hi - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+2024-02-03 22:50:46,776 - ERROR 40; Module: errors - Filename:errors.py - FuncName:any_error - №line:22; Message: 500. Internal Server Error. The url is /accounts/profile/hi - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+2024-02-03 22:50:46,888 - ERROR 40; Module: errors - Filename:errors.py - FuncName:any_error - №line:22; Message: 500. Internal Server Error. The url is /static/main/css/error.css - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+2024-02-03 22:50:46,941 - ERROR 40; Module: errors - Filename:errors.py - FuncName:any_error - №line:22; Message: 500. Internal Server Error. The url is /static/main/img/favicon.ico - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+2024-02-03 22:52:09,869 - ERROR 40; Module: errors - Filename:errors.py - FuncName:any_error - №line:22; Message: 404. Page Not Found. The url is /404/ - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:01:12,698 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 22;
+Message: 404. Page Not Found. The url is /404/ - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:03:18,550 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 23;
+Message: 500. Internal Server Error. The url is /static/main/css/form.css - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:03:20,212 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 23;
+Message: 500. Internal Server Error. The url is /static/main/css/base.css - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:03:20,236 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 23;
+Message: 500. Internal Server Error. The url is /static/main/css/creature.css - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:03:20,239 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 23;
+Message: 500. Internal Server Error. The url is /media/uploaded/photo.jpg - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:03:20,285 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 23;
+Message: 500. Internal Server Error. The url is /static/main/js/base.js - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
+2024-02-03 23:03:23,342 - ERROR 40;
+Module: errors - Filename: errors.py - FuncName: any_error - №line: 23;
+Message: 500. Internal Server Error. The url is /accounts/profile/ok - C:\Users\zarin\OneDrive\Рабочий стол\Programming\GitHub\Reality\main\errors.py - MainProcess
+
